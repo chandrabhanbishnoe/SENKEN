@@ -7,238 +7,525 @@
 <title>SENKEN</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-body {
-    background: #f5f7fb;
-    color: #111827;
+body{
+    background:#f5f7fb;
+    color:#20242b;
 }
 
-/* LOGIN PAGE */
 
-.login-page {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: #eef2ff;
+/* ================= LOGIN ================= */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:#f1f4f9;
 }
 
-.login-box {
-    width: 100%;
-    max-width: 400px;
-    background: white;
-    padding: 35px 25px;
-    border-radius: 18px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.10);
+.login-box{
+    width:100%;
+    max-width:400px;
+    background:#fff;
+    padding:35px 25px;
+    border-radius:18px;
+    box-shadow:0 10px 35px rgba(0,0,0,.10);
 }
 
-.logo {
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
+.logo-login{
+    text-align:center;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:4px;
+    margin-bottom:8px;
 }
 
-.login-title {
-    text-align: center;
-    color: #6b7280;
-    margin-bottom: 30px;
+.login-title{
+    text-align:center;
+    color:#8a9099;
+    margin-bottom:30px;
 }
 
-.input-group {
-    margin-bottom: 18px;
+.input-group{
+    margin-bottom:18px;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 14px;
-    font-weight: bold;
+.input-group label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:7px;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 16px;
-    outline: none;
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:1px solid #d9dde4;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
 }
 
-.input-group input:focus {
-    border-color: #2563eb;
+.input-group input:focus{
+    border-color:#1689e8;
 }
 
-.login-btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#1689e8;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.login-btn:hover {
-    background: #1d4ed8;
+.error{
+    display:none;
+    color:#e53935;
+    text-align:center;
+    margin-top:15px;
 }
 
-.error {
-    color: #dc2626;
-    text-align: center;
-    margin-top: 15px;
-    display: none;
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+    display:none;
+    min-height:100vh;
 }
 
-/* DASHBOARD */
 
-.dashboard {
-    display: none;
-    min-height: 100vh;
+/* ================= TOP BAR ================= */
+
+.topbar{
+    height:70px;
+    background:#ffffff;
+    border-bottom:1px solid #e9edf2;
+    display:flex;
+    align-items:center;
+    padding:0 18px;
+    position:relative;
+    z-index:10;
 }
 
-.header {
-    background: #111827;
-    color: white;
-    padding: 20px;
+.menu-button{
+    width:45px;
+    height:45px;
+    border:0;
+    background:transparent;
+    font-size:28px;
+    cursor:pointer;
+    color:#20242b;
 }
 
-.header-content {
-    max-width: 1000px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.top-logo{
+    font-size:21px;
+    font-weight:700;
+    letter-spacing:3px;
+    margin-left:8px;
 }
 
-.header h1 {
-    font-size: 22px;
-    letter-spacing: 2px;
+.logout{
+    margin-left:auto;
+    border:0;
+    background:#ef4444;
+    color:white;
+    padding:9px 14px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
-.logout {
-    background: #ef4444;
-    color: white;
-    border: none;
-    padding: 9px 14px;
-    border-radius: 8px;
-    cursor: pointer;
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+
+    top:0;
+    left:-390px;
+
+    width:390px;
+    max-width:82vw;
+
+    height:100vh;
+
+    background:#ffffff;
+
+    z-index:1000;
+
+    box-shadow:8px 0 35px rgba(0,0,0,.13);
+
+    transition:left .30s ease;
+
+    overflow-y:auto;
 }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 25px 18px;
+.sidebar.open{
+    left:0;
 }
 
-.page-title {
-    font-size: 25px;
-    margin-bottom: 20px;
+
+/* SIDEBAR TOP */
+
+.sidebar-top{
+    height:92px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    border-bottom:1px solid #eeeeee;
 }
 
-.deposit-card {
-    background: white;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-    cursor: pointer;
-    border-left: 5px solid #2563eb;
+
+/* LIGHT ICON */
+
+.light-button{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#238ee8;
+
+    background:#f8fbff;
+
+    font-size:23px;
 }
 
-.deposit-card h2 {
-    font-size: 27px;
-    margin-bottom: 8px;
+
+/* LANGUAGE */
+
+.language{
+    font-size:17px;
+    font-weight:600;
+    color:#5c6570;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    background:#fafafa;
 }
 
-.deposit-card p {
-    color: #6b7280;
+
+/* CLOSE */
+
+.close-button{
+    border:0;
+    background:transparent;
+
+    font-size:28px;
+
+    color:#8d949c;
+
+    cursor:pointer;
 }
 
-.deposit-card:hover {
-    transform: translateY(-2px);
+
+/* ================= MENU ================= */
+
+.menu{
+    padding:18px 14px 25px;
 }
 
-.section-title {
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-size: 21px;
+.menu-item{
+    width:100%;
+
+    height:60px;
+
+    border:0;
+    background:transparent;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 20px;
+
+    margin-bottom:3px;
+
+    border-radius:12px;
+
+    color:#858b94;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    transition:.15s;
 }
 
-.statistics {
-    background: white;
-    padding: 22px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+.menu-item:hover{
+    background:#f5f8fc;
 }
 
-.stat-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 13px 0;
-    border-bottom: 1px solid #e5e7eb;
+
+/* ACTIVE */
+
+.menu-item.active{
+    color:#1689e8;
+    background:#eef7ff;
+    font-weight:600;
 }
 
-.stat-row:last-child {
-    border-bottom: none;
+
+/* ICON BOX */
+
+.menu-icon{
+    width:42px;
+    min-width:42px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-right:7px;
+
+    color:#9aa1aa;
 }
 
-.stat-name {
-    color: #6b7280;
+.menu-item.active .menu-icon{
+    color:#1689e8;
 }
 
-.stat-value {
-    font-weight: bold;
+
+/* SVG ICON */
+
+.menu-icon svg{
+    width:27px;
+    height:27px;
+
+    stroke:currentColor;
+
+    fill:none;
+
+    stroke-width:1.7;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
 }
+
+
+/* ================= OVERLAY ================= */
+
+.overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.30);
+
+    z-index:900;
+
+    display:none;
+}
+
+.overlay.show{
+    display:block;
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+.main{
+    max-width:1000px;
+    margin:auto;
+    padding:28px 20px;
+}
+
+.page-title{
+    font-size:26px;
+    margin-bottom:22px;
+}
+
+.deposit-card{
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    border-left:5px solid #1689e8;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+
+    cursor:pointer;
+}
+
+.deposit-card h2{
+    font-size:28px;
+    margin-bottom:7px;
+}
+
+.deposit-card p{
+    color:#7d848d;
+}
+
+.section-title{
+    margin-top:30px;
+    margin-bottom:15px;
+}
+
+.statistics{
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.stat-row{
+    display:flex;
+    justify-content:space-between;
+
+    padding:14px 0;
+
+    border-bottom:1px solid #edf0f3;
+}
+
+.stat-row:last-child{
+    border-bottom:0;
+}
+
+.stat-name{
+    color:#858b94;
+}
+
+.stat-value{
+    font-weight:600;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+    .sidebar{
+        width:82vw;
+        max-width:none;
+    }
+
+    .sidebar-top{
+        padding:0 22px;
+    }
+
+    .menu{
+        padding:16px 12px 25px;
+    }
+
+    .menu-item{
+        height:61px;
+        padding:0 18px;
+    }
+
+    .top-logo{
+        font-size:19px;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:380px){
+
+    .sidebar{
+        width:86vw;
+    }
+
+    .menu-item{
+        font-size:15px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- LOGIN PAGE -->
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div class="login-page" id="loginPage">
 
     <div class="login-box">
 
-        <div class="logo">SENKEN</div>
+        <div class="logo-login">
+            SENKEN
+        </div>
 
         <div class="login-title">
             Account Login
         </div>
 
+
         <div class="input-group">
+
             <label>User ID</label>
+
             <input
                 type="text"
                 id="userId"
                 placeholder="Enter User ID"
             >
+
         </div>
 
+
         <div class="input-group">
+
             <label>Password</label>
+
             <input
                 type="password"
                 id="password"
                 placeholder="Enter Password"
             >
+
         </div>
 
-        <button class="login-btn" onclick="login()">
+
+        <button
+            class="login-btn"
+            onclick="login()"
+        >
             LOGIN
         </button>
 
-        <div class="error" id="error">
+
+        <div
+            class="error"
+            id="error"
+        >
             Invalid User ID or Password
         </div>
 
@@ -247,67 +534,442 @@ body {
 </div>
 
 
-<!-- DASHBOARD -->
 
-<div class="dashboard" id="dashboard">
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
-    <div class="header">
+<div
+    class="dashboard"
+    id="dashboard"
+>
 
-        <div class="header-content">
 
-            <h1>SENKEN</h1>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-            <button class="logout" onclick="logout()">
-                Logout
-            </button>
+<div
+    class="sidebar"
+    id="sidebar"
+>
 
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-top">
+
+        <div class="light-button">
+            💡
         </div>
+
+
+        <div class="language">
+            EN
+        </div>
+
+
+        <button
+            class="close-button"
+            onclick="closeMenu()"
+        >
+            ×
+        </button>
 
     </div>
 
 
-    <div class="container">
 
-        <h2 class="page-title">
-            Account Dashboard
+    <!-- MENU -->
+
+    <div class="menu">
+
+
+        <!-- NEWS -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('News')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                    <path d="M10 21h4"/>
+                </svg>
+
+            </span>
+
+            News
+
+        </button>
+
+
+
+        <!-- VERIFICATION -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Verification')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                </svg>
+
+            </span>
+
+            Verification
+
+        </button>
+
+
+
+        <!-- DASHBOARD -->
+
+        <button
+            class="menu-item active"
+            onclick="goDashboard()"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <rect
+                        x="4"
+                        y="4"
+                        width="16"
+                        height="16"
+                        rx="4"
+                    />
+
+                    <path d="M8 15v-3"/>
+                    <path d="M12 15V9"/>
+                    <path d="M16 15v-6"/>
+
+                </svg>
+
+            </span>
+
+            Dashboard
+
+        </button>
+
+
+
+        <!-- REQUISITES -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Requisites')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <rect
+                        x="3"
+                        y="6"
+                        width="18"
+                        height="14"
+                        rx="2"
+                    />
+
+                    <path d="M7 6V4h10v2"/>
+                    <path d="M7 11h10"/>
+                    <path d="M7 15h6"/>
+
+                </svg>
+
+            </span>
+
+            Requisites
+
+        </button>
+
+
+
+        <!-- INVOICES -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Invoices')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/>
+                    <path d="M9 8h6"/>
+                    <path d="M9 12h6"/>
+
+                </svg>
+
+            </span>
+
+            Invoices
+
+        </button>
+
+
+
+        <!-- INVOICE HISTORY -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Invoices History')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/>
+                    <path d="M9 8h6"/>
+                    <path d="M9 12h4"/>
+
+                </svg>
+
+            </span>
+
+            Invoices History
+
+        </button>
+
+
+
+        <!-- APPEALS -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Appeals')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M4 5h16v11H8l-4 4V5z"/>
+                    <path d="M8 9h8"/>
+                    <path d="M8 12h5"/>
+
+                </svg>
+
+            </span>
+
+            Appeals
+
+        </button>
+
+
+
+        <!-- NOTIFICATIONS -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Notifications')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <rect
+                        x="6"
+                        y="3"
+                        width="12"
+                        height="18"
+                        rx="2"
+                    />
+
+                    <path d="M9 7h6"/>
+                    <path d="M9 11h6"/>
+                    <path d="M9 15h4"/>
+
+                </svg>
+
+            </span>
+
+            Notifications
+
+        </button>
+
+
+
+        <!-- INSTRUCTIONS -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Instructions')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M4 5a3 3 0 0 1 3-2h13v17H7a3 3 0 0 0-3 3V5z"/>
+                    <path d="M7 3v17"/>
+
+                </svg>
+
+            </span>
+
+            Instructions
+
+        </button>
+
+
+
+        <!-- SETTINGS -->
+
+        <button
+            class="menu-item"
+            onclick="showPage('Settings')"
+        >
+
+            <span class="menu-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="3"
+                    />
+
+                    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.5v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2.5h.5A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5V5h2.5v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1A1.7 1.7 0 0 0 19.4 10c.2.6.7 1 1.4 1h.2v2.5h-.2c-.7 0-1.2.5-1.4 1z"/>
+
+                </svg>
+
+            </span>
+
+            Settings
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- OVERLAY -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()"
+></div>
+
+
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<div class="topbar">
+
+    <button
+        class="menu-button"
+        onclick="openMenu()"
+    >
+        ☰
+    </button>
+
+
+    <div class="top-logo">
+        SENKEN
+    </div>
+
+
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+        Logout
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     DASHBOARD CONTENT
+===================================================== -->
+
+<div class="main">
+
+    <h2 class="page-title">
+        Account Dashboard
+    </h2>
+
+
+    <div
+        class="deposit-card"
+        onclick="openDeposit()"
+    >
+
+        <h2>
+            2000 USDT
         </h2>
 
+        <p>
+            Deposit
+        </p>
 
-        <!-- DEPOSIT -->
+    </div>
 
-        <div class="deposit-card" onclick="openDeposit()">
 
-            <h2>2000 USDT</h2>
+    <h3 class="section-title">
+        Statistics
+    </h3>
 
-            <p>
-                Deposit
-            </p>
+
+    <div class="statistics">
+
+        <div class="stat-row">
+
+            <span class="stat-name">
+                Account Status
+            </span>
+
+            <span class="stat-value">
+                Active
+            </span>
 
         </div>
 
 
-        <!-- STATISTICS -->
+        <div class="stat-row">
 
-        <h3 class="section-title">
-            Statistics
-        </h3>
+            <span class="stat-name">
+                Deposit
+            </span>
 
-        <div class="statistics">
+            <span class="stat-value">
+                2000 USDT
+            </span>
 
-            <div class="stat-row">
-                <span class="stat-name">Account Status</span>
-                <span class="stat-value">Active</span>
-            </div>
+        </div>
 
-            <div class="stat-row">
-                <span class="stat-name">Deposit</span>
-                <span class="stat-value">2000 USDT</span>
-            </div>
 
-            <div class="stat-row">
-                <span class="stat-name">Total Balance</span>
-                <span class="stat-value">2000 USDT</span>
-            </div>
+        <div class="stat-row">
+
+            <span class="stat-name">
+                Total Balance
+            </span>
+
+            <span class="stat-value">
+                2000 USDT
+            </span>
 
         </div>
 
@@ -315,47 +977,136 @@ body {
 
 </div>
 
+</div>
+
+
 
 <script>
 
-function login() {
 
-    const userId = document.getElementById("userId").value;
-    const password = document.getElementById("password").value;
+/* ================= LOGIN ================= */
 
-    /*
-       TEMPORARY LOGIN
-       User ID: admin
-       Password: 123456
-    */
+function login(){
 
-    if (userId === "admin" && password === "123456") {
+    const user =
+        document.getElementById("userId").value;
 
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
+    const pass =
+        document.getElementById("password").value;
 
-    } else {
 
-        document.getElementById("error").style.display = "block";
+    if(
+        user === "admin" &&
+        pass === "123456"
+    ){
+
+        document.getElementById("loginPage")
+        .style.display="none";
+
+        document.getElementById("dashboard")
+        .style.display="block";
+
+    }else{
+
+        document.getElementById("error")
+        .style.display="block";
 
     }
-}
-
-
-function logout() {
-
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("loginPage").style.display = "flex";
-
-    document.getElementById("userId").value = "";
-    document.getElementById("password").value = "";
 
 }
 
 
-function openDeposit() {
 
-    alert("Deposit page will be added later.");
+/* ================= OPEN MENU ================= */
+
+function openMenu(){
+
+    document
+    .getElementById("sidebar")
+    .classList.add("open");
+
+    document
+    .getElementById("overlay")
+    .classList.add("show");
+
+}
+
+
+
+/* ================= CLOSE MENU ================= */
+
+function closeMenu(){
+
+    document
+    .getElementById("sidebar")
+    .classList.remove("open");
+
+    document
+    .getElementById("overlay")
+    .classList.remove("show");
+
+}
+
+
+
+/* ================= DASHBOARD ================= */
+
+function goDashboard(){
+
+    closeMenu();
+
+}
+
+
+
+/* ================= OTHER MENU ================= */
+
+function showPage(page){
+
+    closeMenu();
+
+    alert(
+        page +
+        " page will be added later."
+    );
+
+}
+
+
+
+/* ================= DEPOSIT ================= */
+
+function openDeposit(){
+
+    alert(
+        "Deposit page will be added later."
+    );
+
+}
+
+
+
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    document
+    .getElementById("dashboard")
+    .style.display="none";
+
+    document
+    .getElementById("loginPage")
+    .style.display="flex";
+
+    document
+    .getElementById("userId")
+    .value="";
+
+    document
+    .getElementById("password")
+    .value="";
+
+    closeMenu();
 
 }
 
