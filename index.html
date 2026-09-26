@@ -3,1114 +3,1200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SENKEN</title>
 
 <style>
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f5f7fb;
-    color:#20242b;
+  background:#f7f8fa;
+  color:#222;
 }
 
+button{
+  font-family:inherit;
+}
+
+.hidden{
+  display:none!important;
+}
 
 /* ================= LOGIN ================= */
 
-.login-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:#f1f4f9;
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f5f7fa;
+  padding:20px;
 }
 
 .login-box{
-    width:100%;
-    max-width:400px;
-    background:#fff;
-    padding:35px 25px;
-    border-radius:18px;
-    box-shadow:0 10px 35px rgba(0,0,0,.10);
+  width:100%;
+  max-width:400px;
+  background:white;
+  border-radius:18px;
+  padding:30px 25px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
-.logo-login{
-    text-align:center;
-    font-size:30px;
-    font-weight:700;
-    letter-spacing:4px;
-    margin-bottom:8px;
+.logo{
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+  letter-spacing:1px;
+  margin-bottom:8px;
 }
 
-.login-title{
-    text-align:center;
-    color:#8a9099;
-    margin-bottom:30px;
+.login-sub{
+  text-align:center;
+  color:#777;
+  margin-bottom:28px;
 }
 
-.input-group{
-    margin-bottom:18px;
+.login-box input{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
 }
 
-.input-group label{
-    display:block;
-    font-size:14px;
-    font-weight:600;
-    margin-bottom:7px;
-}
-
-.input-group input{
-    width:100%;
-    padding:14px;
-    border:1px solid #d9dde4;
-    border-radius:10px;
-    font-size:16px;
-    outline:none;
-}
-
-.input-group input:focus{
-    border-color:#1689e8;
+.login-box input:focus{
+  border-color:#1683ff;
 }
 
 .login-btn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#1689e8;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+  width:100%;
+  border:0;
+  background:#1683ff;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
 }
 
-.error{
-    display:none;
-    color:#e53935;
-    text-align:center;
-    margin-top:15px;
+.login-error{
+  color:#e53935;
+  text-align:center;
+  margin-top:12px;
+  font-size:14px;
 }
 
+/* ================= APP ================= */
 
-/* ================= DASHBOARD ================= */
-
-.dashboard{
-    display:none;
-    min-height:100vh;
+#app{
+  min-height:100vh;
 }
-
-
-/* ================= TOP BAR ================= */
 
 .topbar{
-    height:70px;
-    background:#ffffff;
-    border-bottom:1px solid #e9edf2;
-    display:flex;
-    align-items:center;
-    padding:0 18px;
-    position:relative;
-    z-index:10;
+  height:64px;
+  background:white;
+  border-bottom:1px solid #e8e8e8;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-.menu-button{
-    width:45px;
-    height:45px;
-    border:0;
-    background:transparent;
-    font-size:28px;
-    cursor:pointer;
-    color:#20242b;
+.top-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.menu-btn{
+  border:0;
+  background:transparent;
+  font-size:27px;
+  cursor:pointer;
+  width:38px;
+  height:38px;
 }
 
 .top-logo{
-    font-size:21px;
-    font-weight:700;
-    letter-spacing:3px;
-    margin-left:8px;
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:.7px;
 }
 
-.logout{
-    margin-left:auto;
-    border:0;
-    background:#ef4444;
-    color:white;
-    padding:9px 14px;
-    border-radius:8px;
-    cursor:pointer;
+.logout-btn{
+  border:1px solid #ffdddd;
+  color:#e53935;
+  background:#fff7f7;
+  border-radius:8px;
+  padding:8px 13px;
+  cursor:pointer;
 }
-
 
 /* ================= SIDEBAR ================= */
 
-.sidebar{
-    position:fixed;
-
-    top:0;
-    left:-390px;
-
-    width:390px;
-    max-width:82vw;
-
-    height:100vh;
-
-    background:#ffffff;
-
-    z-index:1000;
-
-    box-shadow:8px 0 35px rgba(0,0,0,.13);
-
-    transition:left .30s ease;
-
-    overflow-y:auto;
-}
-
-.sidebar.open{
-    left:0;
-}
-
-
-/* SIDEBAR TOP */
-
-.sidebar-top{
-    height:92px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 30px;
-
-    border-bottom:1px solid #eeeeee;
-}
-
-
-/* LIGHT ICON */
-
-.light-button{
-    width:42px;
-    height:42px;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#238ee8;
-
-    background:#f8fbff;
-
-    font-size:23px;
-}
-
-
-/* LANGUAGE */
-
-.language{
-    font-size:17px;
-    font-weight:600;
-    color:#5c6570;
-
-    padding:10px 16px;
-
-    border-radius:10px;
-
-    background:#fafafa;
-}
-
-
-/* CLOSE */
-
-.close-button{
-    border:0;
-    background:transparent;
-
-    font-size:28px;
-
-    color:#8d949c;
-
-    cursor:pointer;
-}
-
-
-/* ================= MENU ================= */
-
-.menu{
-    padding:18px 14px 25px;
-}
-
-.menu-item{
-    width:100%;
-
-    height:60px;
-
-    border:0;
-    background:transparent;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 20px;
-
-    margin-bottom:3px;
-
-    border-radius:12px;
-
-    color:#858b94;
-
-    font-size:16px;
-
-    font-weight:500;
-
-    cursor:pointer;
-
-    text-align:left;
-
-    transition:.15s;
-}
-
-.menu-item:hover{
-    background:#f5f8fc;
-}
-
-
-/* ACTIVE */
-
-.menu-item.active{
-    color:#1689e8;
-    background:#eef7ff;
-    font-weight:600;
-}
-
-
-/* ICON BOX */
-
-.menu-icon{
-    width:42px;
-    min-width:42px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    margin-right:7px;
-
-    color:#9aa1aa;
-}
-
-.menu-item.active .menu-icon{
-    color:#1689e8;
-}
-
-
-/* SVG ICON */
-
-.menu-icon svg{
-    width:27px;
-    height:27px;
-
-    stroke:currentColor;
-
-    fill:none;
-
-    stroke-width:1.7;
-
-    stroke-linecap:round;
-
-    stroke-linejoin:round;
-}
-
-
-/* ================= OVERLAY ================= */
-
 .overlay{
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.30);
-
-    z-index:900;
-
-    display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:40;
+  display:none;
 }
 
 .overlay.show{
-    display:block;
+  display:block;
 }
 
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:350px;
+  max-width:84vw;
+  background:white;
+  z-index:50;
+  transform:translateX(-105%);
+  transition:.25s ease;
+  box-shadow:8px 0 25px rgba(0,0,0,.12);
+  overflow-y:auto;
+}
 
-/* ================= MAIN CONTENT ================= */
+.sidebar.open{
+  transform:translateX(0);
+}
 
-.main{
-    max-width:1000px;
-    margin:auto;
-    padding:28px 20px;
+.sidebar-head{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  border-bottom:1px solid #eee;
+}
+
+.lang{
+  font-size:16px;
+  font-weight:700;
+}
+
+.close-menu{
+  border:0;
+  background:transparent;
+  font-size:30px;
+  cursor:pointer;
+  color:#777;
+}
+
+.menu-list{
+  padding:12px 10px;
+}
+
+.menu-item{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  border:0;
+  background:white;
+  padding:13px 15px;
+  margin:3px 0;
+  border-radius:10px;
+  color:#555;
+  cursor:pointer;
+  text-align:left;
+  font-size:15px;
+}
+
+.menu-item:hover{
+  background:#f3f7ff;
+  color:#1683ff;
+}
+
+.menu-item.active{
+  background:#eaf4ff;
+  color:#1683ff;
+  font-weight:700;
+}
+
+.icon{
+  width:21px;
+  text-align:center;
+  font-size:18px;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+  max-width:1050px;
+  margin:auto;
+  padding:22px 16px 80px;
 }
 
 .page-title{
-    font-size:26px;
-    margin-bottom:22px;
+  font-size:25px;
+  font-weight:750;
+  margin-bottom:18px;
 }
 
-.deposit-card{
-    background:#fff;
-
-    border-radius:16px;
-
-    padding:25px;
-
-    border-left:5px solid #1689e8;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
-
-    cursor:pointer;
+.page-subtitle{
+  color:#777;
+  margin-top:-10px;
+  margin-bottom:20px;
 }
 
-.deposit-card h2{
-    font-size:28px;
-    margin-bottom:7px;
+/* cards */
+
+.card{
+  background:white;
+  border:1px solid #ececec;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.025);
 }
 
-.deposit-card p{
-    color:#7d848d;
+.card-title{
+  font-size:18px;
+  font-weight:750;
+  margin-bottom:15px;
 }
 
-.section-title{
-    margin-top:30px;
-    margin-bottom:15px;
+.status-card{
+  border-left:4px solid #1683ff;
 }
 
-.statistics{
-    background:#fff;
-
-    border-radius:16px;
-
-    padding:20px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
+.status-row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:8px 0;
+  border-bottom:1px solid #f1f1f1;
 }
 
-.stat-row{
-    display:flex;
-    justify-content:space-between;
-
-    padding:14px 0;
-
-    border-bottom:1px solid #edf0f3;
+.status-row:last-child{
+  border-bottom:0;
 }
 
-.stat-row:last-child{
-    border-bottom:0;
+.active{
+  color:#19a463;
+  font-weight:700;
 }
 
-.stat-name{
-    color:#858b94;
+.deposit-amount{
+  font-size:28px;
+  font-weight:800;
+  margin:5px 0;
+}
+
+.deposit-label{
+  color:#777;
+  font-size:14px;
+}
+
+.appeals-number{
+  font-size:28px;
+  font-weight:800;
+}
+
+.open-link{
+  display:inline-block;
+  margin-top:12px;
+  color:#1683ff;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* statistics */
+
+.stats-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.stats-buttons{
+  display:flex;
+  gap:7px;
+}
+
+.small-btn{
+  border:1px solid #ddd;
+  background:white;
+  padding:7px 12px;
+  border-radius:7px;
+  cursor:pointer;
+}
+
+.small-btn:hover{
+  border-color:#1683ff;
+  color:#1683ff;
+}
+
+.stat-main{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.stat-box{
+  border:1px solid #eee;
+  border-radius:11px;
+  padding:14px;
+}
+
+.stat-label{
+  color:#777;
+  font-size:13px;
+  margin-bottom:7px;
 }
 
 .stat-value{
-    font-weight:600;
+  font-size:18px;
+  font-weight:750;
 }
 
+/* financial */
 
-/* ================= MOBILE ================= */
+.section-heading{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.section-description{
+  color:#777;
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+.rate-card{
+  border:1px solid #ededed;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.rate-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.rate-name{
+  color:#1683ff;
+  font-weight:750;
+}
+
+.inactive{
+  color:#e45a5a;
+  background:#fff0f0;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.rate-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  font-size:14px;
+}
+
+.rate-grid span:nth-child(odd){
+  color:#777;
+}
+
+.exchange-row{
+  display:flex;
+  justify-content:space-between;
+  border:1px solid #eee;
+  padding:15px;
+  border-radius:10px;
+}
+
+.exchange-value{
+  font-weight:800;
+}
+
+/* recent activity */
+
+.activity-tabs{
+  display:flex;
+  gap:5px;
+  margin-bottom:15px;
+}
+
+.activity-tab{
+  flex:1;
+  border:1px solid #eee;
+  background:white;
+  padding:11px 8px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.activity-tab.active-tab{
+  color:#1683ff;
+  border-color:#cfe5ff;
+  background:#f3f8ff;
+}
+
+.empty{
+  text-align:center;
+  padding:28px 10px;
+  color:#888;
+}
+
+/* page navigation */
+
+.back-btn{
+  border:0;
+  background:#eef6ff;
+  color:#1683ff;
+  padding:9px 13px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-bottom:15px;
+}
+
+.chart-box{
+  height:180px;
+  border:1px solid #eee;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#999;
+  margin-bottom:15px;
+}
+
+.status-legend{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  font-size:13px;
+}
+
+.dot{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:2px;
+  margin-right:5px;
+}
+
+.red{background:#e55;}
+.green{background:#27ae60;}
+.blue{background:#1683ff;}
+
+/* floating buttons */
+
+.floating{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:15;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.float-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:0;
+  background:white;
+  box-shadow:0 3px 15px rgba(0,0,0,.15);
+  cursor:pointer;
+  font-size:19px;
+}
+
+.float-chat{
+  background:#1683ff;
+  color:white;
+}
+
+/* responsive */
 
 @media(max-width:600px){
 
-    .sidebar{
-        width:82vw;
-        max-width:none;
-    }
+  .content{
+    padding:18px 12px 80px;
+  }
 
-    .sidebar-top{
-        padding:0 22px;
-    }
+  .page-title{
+    font-size:23px;
+  }
 
-    .menu{
-        padding:16px 12px 25px;
-    }
+  .stat-main{
+    grid-template-columns:1fr 1fr;
+  }
 
-    .menu-item{
-        height:61px;
-        padding:0 18px;
-    }
+  .rate-grid{
+    grid-template-columns:1fr 1fr;
+  }
 
-    .top-logo{
-        font-size:19px;
-    }
+  .topbar{
+    padding:0 11px;
+  }
 
+  .top-logo{
+    font-size:19px;
+  }
 }
-
-
-/* ================= SMALL MOBILE ================= */
-
-@media(max-width:380px){
-
-    .sidebar{
-        width:86vw;
-    }
-
-    .menu-item{
-        font-size:15px;
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
+<!-- ================= LOGIN ================= -->
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+<div id="loginPage">
 
-<div class="login-page" id="loginPage">
+  <div class="login-box">
 
-    <div class="login-box">
+    <div class="logo">SENKEN</div>
+    <div class="login-sub">Account Login</div>
 
-        <div class="logo-login">
-            SENKEN
-        </div>
+    <input id="userId" type="text" placeholder="User ID">
+    <input id="password" type="password" placeholder="Password">
 
-        <div class="login-title">
-            Account Login
-        </div>
+    <button class="login-btn" onclick="login()">LOGIN</button>
 
+    <div id="loginError" class="login-error"></div>
 
-        <div class="input-group">
-
-            <label>User ID</label>
-
-            <input
-                type="text"
-                id="userId"
-                placeholder="Enter User ID"
-            >
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>Password</label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter Password"
-            >
-
-        </div>
-
-
-        <button
-            class="login-btn"
-            onclick="login()"
-        >
-            LOGIN
-        </button>
-
-
-        <div
-            class="error"
-            id="error"
-        >
-            Invalid User ID or Password
-        </div>
-
-    </div>
+  </div>
 
 </div>
 
 
+<!-- ================= APP ================= -->
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
+<div id="app" class="hidden">
 
-<div
-    class="dashboard"
-    id="dashboard"
->
+  <header class="topbar">
 
+    <div class="top-left">
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+      <button class="menu-btn" onclick="openMenu()">☰</button>
 
-<div
-    class="sidebar"
-    id="sidebar"
->
-
-
-    <!-- SIDEBAR HEADER -->
-
-    <div class="sidebar-top">
-
-        <div class="light-button">
-            💡
-        </div>
-
-
-        <div class="language">
-            EN
-        </div>
-
-
-        <button
-            class="close-button"
-            onclick="closeMenu()"
-        >
-            ×
-        </button>
+      <div class="top-logo">SENKEN</div>
 
     </div>
 
+    <button class="logout-btn" onclick="logout()">Logout</button>
 
+  </header>
 
-    <!-- MENU -->
 
-    <div class="menu">
+  <!-- SIDEBAR -->
 
+  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-        <!-- NEWS -->
+  <aside id="sidebar" class="sidebar">
 
-        <button
-            class="menu-item"
-            onclick="showPage('News')"
-        >
+    <div class="sidebar-head">
 
-            <span class="menu-icon">
+      <div class="lang">💡 &nbsp; EN</div>
 
-                <svg viewBox="0 0 24 24">
-                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                    <path d="M10 21h4"/>
-                </svg>
-
-            </span>
-
-            News
-
-        </button>
-
-
-
-        <!-- VERIFICATION -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Verification')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/>
-                    <path d="M9 12l2 2 4-4"/>
-                </svg>
-
-            </span>
-
-            Verification
-
-        </button>
-
-
-
-        <!-- DASHBOARD -->
-
-        <button
-            class="menu-item active"
-            onclick="goDashboard()"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect
-                        x="4"
-                        y="4"
-                        width="16"
-                        height="16"
-                        rx="4"
-                    />
-
-                    <path d="M8 15v-3"/>
-                    <path d="M12 15V9"/>
-                    <path d="M16 15v-6"/>
-
-                </svg>
-
-            </span>
-
-            Dashboard
-
-        </button>
-
-
-
-        <!-- REQUISITES -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Requisites')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect
-                        x="3"
-                        y="6"
-                        width="18"
-                        height="14"
-                        rx="2"
-                    />
-
-                    <path d="M7 6V4h10v2"/>
-                    <path d="M7 11h10"/>
-                    <path d="M7 15h6"/>
-
-                </svg>
-
-            </span>
-
-            Requisites
-
-        </button>
-
-
-
-        <!-- INVOICES -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Invoices')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/>
-                    <path d="M9 8h6"/>
-                    <path d="M9 12h6"/>
-
-                </svg>
-
-            </span>
-
-            Invoices
-
-        </button>
-
-
-
-        <!-- INVOICE HISTORY -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Invoices History')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/>
-                    <path d="M9 8h6"/>
-                    <path d="M9 12h4"/>
-
-                </svg>
-
-            </span>
-
-            Invoices History
-
-        </button>
-
-
-
-        <!-- APPEALS -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Appeals')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M4 5h16v11H8l-4 4V5z"/>
-                    <path d="M8 9h8"/>
-                    <path d="M8 12h5"/>
-
-                </svg>
-
-            </span>
-
-            Appeals
-
-        </button>
-
-
-
-        <!-- NOTIFICATIONS -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Notifications')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <rect
-                        x="6"
-                        y="3"
-                        width="12"
-                        height="18"
-                        rx="2"
-                    />
-
-                    <path d="M9 7h6"/>
-                    <path d="M9 11h6"/>
-                    <path d="M9 15h4"/>
-
-                </svg>
-
-            </span>
-
-            Notifications
-
-        </button>
-
-
-
-        <!-- INSTRUCTIONS -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Instructions')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="M4 5a3 3 0 0 1 3-2h13v17H7a3 3 0 0 0-3 3V5z"/>
-                    <path d="M7 3v17"/>
-
-                </svg>
-
-            </span>
-
-            Instructions
-
-        </button>
-
-
-
-        <!-- SETTINGS -->
-
-        <button
-            class="menu-item"
-            onclick="showPage('Settings')"
-        >
-
-            <span class="menu-icon">
-
-                <svg viewBox="0 0 24 24">
-
-                    <circle
-                        cx="12"
-                        cy="12"
-                        r="3"
-                    />
-
-                    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.5v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2.5h.5A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5V5h2.5v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1A1.7 1.7 0 0 0 19.4 10c.2.6.7 1 1.4 1h.2v2.5h-.2c-.7 0-1.2.5-1.4 1z"/>
-
-                </svg>
-
-            </span>
-
-            Settings
-
-        </button>
-
+      <button class="close-menu" onclick="closeMenu()">×</button>
 
     </div>
 
-</div>
+    <div class="menu-list">
+
+      <button class="menu-item" onclick="showPage('news')">
+        <span class="icon">📰</span> News
+      </button>
+
+      <button class="menu-item" onclick="showPage('verification')">
+        <span class="icon">✓</span> Verification
+      </button>
+
+      <button class="menu-item active" onclick="showPage('dashboard')">
+        <span class="icon">⌂</span> Dashboard
+      </button>
+
+      <button class="menu-item" onclick="showPage('requisites')">
+        <span class="icon">▣</span> Requisites
+      </button>
+
+      <button class="menu-item" onclick="showPage('invoices')">
+        <span class="icon">▤</span> Invoices
+      </button>
+
+      <button class="menu-item" onclick="showPage('invoice-history')">
+        <span class="icon">◷</span> Invoices History
+      </button>
+
+      <button class="menu-item" onclick="showPage('appeals')">
+        <span class="icon">⚖</span> Appeals
+      </button>
+
+      <button class="menu-item" onclick="showPage('notifications')">
+        <span class="icon">♧</span> Notifications
+      </button>
+
+      <button class="menu-item" onclick="showPage('instructions')">
+        <span class="icon">☰</span> Instructions
+      </button>
+
+      <button class="menu-item" onclick="showPage('settings')">
+        <span class="icon">⚙</span> Settings
+      </button>
+
+    </div>
+
+  </aside>
 
 
+  <!-- ================= MAIN CONTENT ================= -->
 
-<!-- OVERLAY -->
+  <main class="content">
 
-<div
-    class="overlay"
-    id="overlay"
-    onclick="closeMenu()"
-></div>
+    <!-- DASHBOARD -->
+
+    <section id="dashboardPage">
+
+      <h1 class="page-title">Account Dashboard</h1>
+
+      <!-- ACCOUNT STATUS -->
+
+      <div class="card status-card">
+
+        <div class="card-title">Account Status</div>
+
+        <div class="status-row">
+          <span>Status</span>
+          <span class="active">Active</span>
+        </div>
+
+        <div class="status-row">
+          <span>User ID</span>
+          <span id="displayUserId">admin</span>
+        </div>
+
+      </div>
 
 
+      <!-- INSURANCE DEPOSIT -->
 
-<!-- =====================================================
-     TOP BAR
-===================================================== -->
+      <div class="card">
 
-<div class="topbar">
+        <div class="card-title">Insurance Deposit</div>
 
-    <button
-        class="menu-button"
-        onclick="openMenu()"
-    >
-        ☰
+        <div class="deposit-amount">
+          <span id="insuranceDeposit">2000</span> USDT
+        </div>
+
+        <div class="deposit-label">
+          Current insurance deposit
+        </div>
+
+      </div>
+
+
+      <!-- APPEALS -->
+
+      <div class="card">
+
+        <div class="card-title">Appeals</div>
+
+        <div class="appeals-number" id="appealsCount">0</div>
+
+        <div class="deposit-label">
+          Open appeals requiring attention
+        </div>
+
+        <div class="open-link" onclick="showPage('appeals')">
+          Open appeals →
+        </div>
+
+      </div>
+
+
+      <!-- STATISTICS -->
+
+      <div class="card">
+
+        <div class="stats-head">
+
+          <div class="card-title" style="margin:0;">
+            Statistics
+          </div>
+
+          <div class="stats-buttons">
+            <button class="small-btn">7D</button>
+            <button class="small-btn">Today</button>
+          </div>
+
+        </div>
+
+        <div class="stat-main">
+
+          <div class="stat-box" onclick="showPage('turnover')">
+            <div class="stat-label">Turnover and earnings</div>
+            <div class="stat-value">0.00 INR</div>
+          </div>
+
+          <div class="stat-box" onclick="showPage('transaction-status')">
+            <div class="stat-label">Transactions by status</div>
+            <div class="stat-value">0</div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:14px;">
+          <button class="small-btn" onclick="showPage('statistics')">
+            Detailed statistics →
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- FINANCIAL OVERVIEW -->
+
+      <div class="card">
+
+        <div class="section-heading">
+          Financial overview
+        </div>
+
+        <div class="section-description">
+          Rates, commissions and recent balance activity
+        </div>
+
+
+        <div class="rate-card">
+
+          <div class="rate-top">
+
+            <div class="rate-name">
+              INR-P2P-UPI
+            </div>
+
+            <div class="inactive">
+              Inactive
+            </div>
+
+          </div>
+
+          <div class="rate-grid">
+
+            <span>Rate:</span>
+            <strong>3.50%</strong>
+
+            <span>Additional Commission:</span>
+            <strong>0.00%</strong>
+
+            <span>Direction:</span>
+            <strong>IN</strong>
+
+          </div>
+
+        </div>
+
+
+        <div class="rate-card">
+
+          <div class="rate-top">
+
+            <div class="rate-name">
+              INR-H2H-OUT
+            </div>
+
+            <div class="inactive">
+              Inactive
+            </div>
+
+          </div>
+
+          <div class="rate-grid">
+
+            <span>Rate:</span>
+            <strong>1.00%</strong>
+
+            <span>Additional Commission:</span>
+            <strong>0.00%</strong>
+
+            <span>Direction:</span>
+            <strong>OUT</strong>
+
+          </div>
+
+        </div>
+
+
+        <div style="margin-top:20px;">
+
+          <div class="card-title">
+            Exchange rates
+          </div>
+
+          <div class="exchange-row">
+            <span>INR</span>
+            <span class="exchange-value">106.00</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- RECENT ACTIVITY -->
+
+      <div class="card">
+
+        <div class="section-heading">
+          Recent activity
+        </div>
+
+        <div class="activity-tabs">
+
+          <button
+            id="depositTab"
+            class="activity-tab active-tab"
+            onclick="showActivity('deposit')">
+            Deposit history
+          </button>
+
+          <button
+            id="balanceTab"
+            class="activity-tab"
+            onclick="showActivity('balance')">
+            Balance operations history
+          </button>
+
+        </div>
+
+        <div id="depositHistory" class="empty">
+          No history
+        </div>
+
+        <div id="balanceHistory" class="empty hidden">
+          No balance operations yet
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= OTHER PAGES ================= -->
+
+    <section id="otherPage" class="hidden">
+
+      <button class="back-btn" onclick="showPage('dashboard')">
+        ← Back to Dashboard
+      </button>
+
+      <h1 id="otherTitle" class="page-title"></h1>
+
+      <div id="otherContent"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FLOATING BUTTONS -->
+
+  <div class="floating">
+
+    <button class="float-btn" title="Notifications"
+      onclick="showPage('notifications')">
+      ♧
     </button>
 
-
-    <div class="top-logo">
-        SENKEN
-    </div>
-
-
-    <button
-        class="logout"
-        onclick="logout()"
-    >
-        Logout
+    <button class="float-btn float-chat" title="Support">
+      ◌
     </button>
 
-</div>
-
-
-
-<!-- =====================================================
-     DASHBOARD CONTENT
-===================================================== -->
-
-<div class="main">
-
-    <h2 class="page-title">
-        Account Dashboard
-    </h2>
-
-
-    <div
-        class="deposit-card"
-        onclick="openDeposit()"
-    >
-
-        <h2>
-            2000 USDT
-        </h2>
-
-        <p>
-            Deposit
-        </p>
-
-    </div>
-
-
-    <h3 class="section-title">
-        Statistics
-    </h3>
-
-
-    <div class="statistics">
-
-        <div class="stat-row">
-
-            <span class="stat-name">
-                Account Status
-            </span>
-
-            <span class="stat-value">
-                Active
-            </span>
-
-        </div>
-
-
-        <div class="stat-row">
-
-            <span class="stat-name">
-                Deposit
-            </span>
-
-            <span class="stat-value">
-                2000 USDT
-            </span>
-
-        </div>
-
-
-        <div class="stat-row">
-
-            <span class="stat-name">
-                Total Balance
-            </span>
-
-            <span class="stat-value">
-                2000 USDT
-            </span>
-
-        </div>
-
-    </div>
+  </div>
 
 </div>
-
-</div>
-
 
 
 <script>
 
+/* =====================================================
+   USER DATA
+   =====================================================
 
-/* ================= LOGIN ================= */
+   YAHAN SE HAR USER KI INFORMATION SET KI JA SAKTI HAI.
+
+   Example:
+
+   user001: {
+      password: "123456",
+      insuranceDeposit: 5000,
+      appeals: 0
+   }
+
+*/
+
+const USERS = {
+
+  admin: {
+    password: "123456",
+    insuranceDeposit: 2000,
+    appeals: 0
+  },
+
+  /*
+  user001: {
+    password: "abc123",
+    insuranceDeposit: 5000,
+    appeals: 0
+  },
+
+  user002: {
+    password: "xyz123",
+    insuranceDeposit: 10000,
+    appeals: 0
+  }
+  */
+
+};
+
+
+/* CURRENT USER */
+
+let currentUser = null;
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
 
 function login(){
 
-    const user =
-        document.getElementById("userId").value;
+  const id =
+    document.getElementById("userId").value.trim();
 
-    const pass =
-        document.getElementById("password").value;
+  const pass =
+    document.getElementById("password").value;
 
+  const error =
+    document.getElementById("loginError");
 
-    if(
-        user === "admin" &&
-        pass === "123456"
-    ){
+  if(USERS[id] && USERS[id].password === pass){
 
-        document.getElementById("loginPage")
-        .style.display="none";
+    currentUser = id;
 
-        document.getElementById("dashboard")
-        .style.display="block";
+    document.getElementById("loginPage")
+      .classList.add("hidden");
 
-    }else{
+    document.getElementById("app")
+      .classList.remove("hidden");
 
-        document.getElementById("error")
-        .style.display="block";
+    loadUserData();
 
-    }
+    showPage("dashboard");
+
+    error.innerText = "";
+
+  }else{
+
+    error.innerText =
+      "Invalid User ID or Password";
+
+  }
 
 }
 
 
+/* =====================================================
+   LOAD USER DATA
+   ===================================================== */
 
-/* ================= OPEN MENU ================= */
+function loadUserData(){
+
+  const user = USERS[currentUser];
+
+  document.getElementById("displayUserId")
+    .innerText = currentUser;
+
+  document.getElementById("insuranceDeposit")
+    .innerText = user.insuranceDeposit;
+
+  document.getElementById("appealsCount")
+    .innerText = user.appeals;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
 
 function openMenu(){
 
-    document
-    .getElementById("sidebar")
+  document.getElementById("sidebar")
     .classList.add("open");
 
-    document
-    .getElementById("overlay")
+  document.getElementById("overlay")
     .classList.add("show");
 
 }
 
 
-
-/* ================= CLOSE MENU ================= */
-
 function closeMenu(){
 
-    document
-    .getElementById("sidebar")
+  document.getElementById("sidebar")
     .classList.remove("open");
 
-    document
-    .getElementById("overlay")
+  document.getElementById("overlay")
     .classList.remove("show");
 
 }
 
 
-
-/* ================= DASHBOARD ================= */
-
-function goDashboard(){
-
-    closeMenu();
-
-}
-
-
-
-/* ================= OTHER MENU ================= */
+/* =====================================================
+   PAGE SYSTEM
+   ===================================================== */
 
 function showPage(page){
 
-    closeMenu();
+  closeMenu();
 
-    alert(
-        page +
-        " page will be added later."
-    );
+  const dashboard =
+    document.getElementById("dashboardPage");
 
-}
+  const other =
+    document.getElementById("otherPage");
 
+  if(page === "dashboard"){
 
+    dashboard.classList.remove("hidden");
+    other.classList.add("hidden");
 
-/* ================= DEPOSIT ================= */
-
-function openDeposit(){
-
-    alert(
-        "Deposit page will be added later."
-    );
-
-}
+    return;
+  }
 
 
+  dashboard.classList.add("hidden");
+  other.classList.remove("hidden");
 
-/* ================= LOGOUT ================= */
 
-function logout(){
+  const title =
+    document.getElementById("otherTitle");
 
-    document
-    .getElementById("dashboard")
-    .style.display="none";
+  const content =
+    document.getElementById("otherContent");
 
-    document
-    .getElementById("loginPage")
-    .style.display="flex";
 
-    document
-    .getElementById("userId")
-    .value="";
+  if(page === "turnover"){
 
-    document
-    .getElementById("password")
-    .value="";
+    title.innerText =
+      "Turnover and Earnings";
 
-    closeMenu();
+    content.innerHTML = `
 
-}
+      <div class="card">
 
-</script>
+        <div class="stat-main">
 
-</body>
-</html>
+          <div class="stat-box">
+            <div class="stat-label">
+              Turnover
+            </div>
+            <div class="stat-value">
+              0.00 INR
+            </div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">
+              Total earned
+            </div>
+            <div class="stat-value">
+              0.00 INR
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  else if(page === "transaction-status"){
+
+    title.innerText =
+      "Transactions by Status";
+
+    content.innerHTML = `
+
+      <div class="card">
+
+        <div class="chart-box">
+          No transactions
+        </div>
+
+        <div class="status-legend">
+
+          <span>
+            <i class="dot red"></i>
+            Failed 0
+          </span>
+
+          <span>
+            <i class="dot green"></i>
+            Successful 0
+          </span>
+
+          <span>
+            <i class="dot blue"></i>
+            Total transactions 0
+          </span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  else if(page === "statistics"){
+
+    title.innerText =
+      "Statistics";
+
+    content.innerHTML = `
+
+      <div class="card">
+
+        <div class="stat-main">
+
+          <div class="stat-box">
+            <div class="stat-label">Turnover</div>
+            <div class="stat-value">0.00 INR</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">Total earned</div>
+            <div class="stat-value">0.00 INR</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">Average check</div>
