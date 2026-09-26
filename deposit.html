@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>USDT Deposit</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+        color: #111827;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .payment-box {
+        width: 100%;
+        max-width: 430px;
+        background: white;
+        border-radius: 22px;
+        padding: 28px 22px;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.10);
+    }
+
+    .logo {
+        font-size: 25px;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        color: #6b7280;
+        font-size: 14px;
+        margin-bottom: 22px;
+    }
+
+    .amount {
+        font-size: 34px;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .currency {
+        color: #667085;
+        font-size: 15px;
+        margin-bottom: 22px;
+    }
+
+    .qr-box {
+        width: 260px;
+        height: 260px;
+        margin: 0 auto 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+    }
+
+    .qr-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .instruction {
+        font-size: 14px;
+        color: #4b5563;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .pay-button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        background: #f0b90b;
+        color: #111;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .status {
+        padding: 13px;
+        border-radius: 12px;
+        background: #fff7df;
+        color: #8a6500;
+        font-size: 14px;
+    }
+
+    .warning {
+        margin-top: 18px;
+        font-size: 12px;
+        color: #777;
+        line-height: 1.5;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="payment-box">
+
+    <div class="logo">USDT DEPOSIT</div>
+
+    <div class="subtitle">
+        Scan the QR code to make your payment
+    </div>
+
+    <div class="amount">2,000</div>
+
+    <div class="currency">
+        USDT
+    </div>
+
+    <div class="qr-box">
+
+        <!-- YAHAN APNA QR CODE LAGANA HAI -->
+        <img src="usdt-qr.png" alt="USDT Payment QR">
+
+    </div>
+
+    <div class="instruction">
+        Open Binance and scan the QR code.
+        <br>
+        Please verify the amount and recipient before confirming.
+    </div>
+
+    <!-- Binance Payment Link baad me yahan laga sakte ho -->
+    <a href="#" class="pay-button">
+        Pay with Binance
+    </a>
+
+    <div class="status">
+        ⏳ Payment Pending
+    </div>
+
+    <div class="warning">
+        Payment complete hone ke baad transaction details
+        carefully verify karein.
+    </div>
+
+</div>
+
+</body>
+</html>
