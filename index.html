@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SENKEN</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #111827;
+}
+
+/* LOGIN PAGE */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #eef2ff;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 35px 25px;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.10);
+}
+
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.login-title {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #2563eb;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #1d4ed8;
+}
+
+.error {
+    color: #dc2626;
+    text-align: center;
+    margin-top: 15px;
+    display: none;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    display: none;
+    min-height: 100vh;
+}
+
+.header {
+    background: #111827;
+    color: white;
+    padding: 20px;
+}
+
+.header-content {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.logout {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px 18px;
+}
+
+.page-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.deposit-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    cursor: pointer;
+    border-left: 5px solid #2563eb;
+}
+
+.deposit-card h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.deposit-card p {
+    color: #6b7280;
+}
+
+.deposit-card:hover {
+    transform: translateY(-2px);
+}
+
+.section-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 21px;
+}
+
+.statistics {
+    background: white;
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-name {
+    color: #6b7280;
+}
+
+.stat-value {
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div class="login-page" id="loginPage">
+
+    <div class="login-box">
+
+        <div class="logo">SENKEN</div>
+
+        <div class="login-title">
+            Account Login
+        </div>
+
+        <div class="input-group">
+            <label>User ID</label>
+            <input
+                type="text"
+                id="userId"
+                placeholder="Enter User ID"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+            >
+        </div>
+
+        <button class="login-btn" onclick="login()">
+            LOGIN
+        </button>
+
+        <div class="error" id="error">
+            Invalid User ID or Password
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="dashboard" id="dashboard">
+
+    <div class="header">
+
+        <div class="header-content">
+
+            <h1>SENKEN</h1>
+
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <h2 class="page-title">
+            Account Dashboard
+        </h2>
+
+
+        <!-- DEPOSIT -->
+
+        <div class="deposit-card" onclick="openDeposit()">
+
+            <h2>2000 USDT</h2>
+
+            <p>
+                Deposit
+            </p>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <h3 class="section-title">
+            Statistics
+        </h3>
+
+        <div class="statistics">
+
+            <div class="stat-row">
+                <span class="stat-name">Account Status</span>
+                <span class="stat-value">Active</span>
+            </div>
+
+            <div class="stat-row">
+                <span class="stat-name">Deposit</span>
+                <span class="stat-value">2000 USDT</span>
+            </div>
+
+            <div class="stat-row">
+                <span class="stat-name">Total Balance</span>
+                <span class="stat-value">2000 USDT</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function login() {
+
+    const userId = document.getElementById("userId").value;
+    const password = document.getElementById("password").value;
+
+    /*
+       TEMPORARY LOGIN
+       User ID: admin
+       Password: 123456
+    */
+
+    if (userId === "admin" && password === "123456") {
+
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+
+    } else {
+
+        document.getElementById("error").style.display = "block";
+
+    }
+}
+
+
+function logout() {
+
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginPage").style.display = "flex";
+
+    document.getElementById("userId").value = "";
+    document.getElementById("password").value = "";
+
+}
+
+
+function openDeposit() {
+
+    alert("Deposit page will be added later.");
+
+}
+
+</script>
+
+</body>
+</html>
