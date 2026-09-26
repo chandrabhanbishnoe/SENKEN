@@ -1187,6 +1187,30 @@ function closeMenu(){
 
 function showPage(page){
 
+  // Sidebar active button update
+  const menuItems = document.querySelectorAll(".menu-item");
+
+  menuItems.forEach(function(item){
+    item.classList.remove("active");
+  });
+
+  const menuOrder = {
+    news: 0,
+    verification: 1,
+    dashboard: 2,
+    requisites: 3,
+    invoices: 4,
+    "invoice-history": 5,
+    appeals: 6,
+    notifications: 7,
+    instructions: 8,
+    settings: 9
+  };
+
+  if(menuOrder[page] !== undefined){
+    menuItems[menuOrder[page]].classList.add("active");
+  }
+
   closeMenu();
 
   const dashboard =
