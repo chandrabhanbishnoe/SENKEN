@@ -14,16 +14,17 @@
 }
 
 body{
-  background:#f7f8fa;
-  color:#222;
+  background:#f6f8fb;
+  color:#202124;
 }
 
 button{
   font-family:inherit;
+  cursor:pointer;
 }
 
 .hidden{
-  display:none!important;
+  display:none !important;
 }
 
 /* ================= LOGIN ================= */
@@ -33,31 +34,31 @@ button{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#f5f7fa;
   padding:20px;
+  background:#f5f7fa;
 }
 
 .login-box{
   width:100%;
   max-width:400px;
-  background:white;
+  background:#fff;
+  padding:32px 26px;
   border-radius:18px;
-  padding:30px 25px;
   box-shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
 .logo{
   text-align:center;
-  font-size:28px;
+  font-size:29px;
   font-weight:800;
   letter-spacing:1px;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
 .login-sub{
   text-align:center;
   color:#777;
-  margin-bottom:28px;
+  margin-bottom:27px;
 }
 
 .login-box input{
@@ -66,8 +67,8 @@ button{
   margin-bottom:14px;
   border:1px solid #ddd;
   border-radius:10px;
-  font-size:15px;
   outline:none;
+  font-size:15px;
 }
 
 .login-box input:focus{
@@ -78,12 +79,11 @@ button{
   width:100%;
   border:0;
   background:#1683ff;
-  color:white;
+  color:#fff;
   padding:14px;
   border-radius:10px;
   font-size:16px;
   font-weight:700;
-  cursor:pointer;
 }
 
 .login-error{
@@ -93,7 +93,7 @@ button{
   font-size:14px;
 }
 
-/* ================= APP ================= */
+/* ================= TOPBAR ================= */
 
 #app{
   min-height:100vh;
@@ -101,8 +101,8 @@ button{
 
 .topbar{
   height:64px;
-  background:white;
-  border-bottom:1px solid #e8e8e8;
+  background:#fff;
+  border-bottom:1px solid #e7e7e7;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -115,31 +115,29 @@ button{
 .top-left{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:13px;
 }
 
 .menu-btn{
+  width:40px;
+  height:40px;
   border:0;
   background:transparent;
   font-size:27px;
-  cursor:pointer;
-  width:38px;
-  height:38px;
 }
 
 .top-logo{
   font-size:21px;
   font-weight:800;
-  letter-spacing:.7px;
+  letter-spacing:.8px;
 }
 
 .logout-btn{
-  border:1px solid #ffdddd;
-  color:#e53935;
-  background:#fff7f7;
-  border-radius:8px;
   padding:8px 13px;
-  cursor:pointer;
+  border-radius:8px;
+  border:1px solid #ffdada;
+  background:#fff6f6;
+  color:#e53935;
 }
 
 /* ================= SIDEBAR ================= */
@@ -163,7 +161,7 @@ button{
   bottom:0;
   width:350px;
   max-width:84vw;
-  background:white;
+  background:#fff;
   z-index:50;
   transform:translateX(-105%);
   transition:.25s ease;
@@ -185,7 +183,6 @@ button{
 }
 
 .lang{
-  font-size:16px;
   font-weight:700;
 }
 
@@ -193,7 +190,6 @@ button{
   border:0;
   background:transparent;
   font-size:30px;
-  cursor:pointer;
   color:#777;
 }
 
@@ -207,29 +203,27 @@ button{
   align-items:center;
   gap:14px;
   border:0;
-  background:white;
+  background:#fff;
+  color:#555;
   padding:13px 15px;
   margin:3px 0;
   border-radius:10px;
-  color:#555;
-  cursor:pointer;
   text-align:left;
   font-size:15px;
 }
 
-.menu-item:hover{
-  background:#f3f7ff;
+.menu-item:hover,
+.menu-item.active{
+  background:#eaf4ff;
   color:#1683ff;
 }
 
 .menu-item.active{
-  background:#eaf4ff;
-  color:#1683ff;
   font-weight:700;
 }
 
 .icon{
-  width:21px;
+  width:22px;
   text-align:center;
   font-size:18px;
 }
@@ -244,20 +238,11 @@ button{
 
 .page-title{
   font-size:25px;
-  font-weight:750;
   margin-bottom:18px;
 }
 
-.page-subtitle{
-  color:#777;
-  margin-top:-10px;
-  margin-bottom:20px;
-}
-
-/* cards */
-
 .card{
-  background:white;
+  background:#fff;
   border:1px solid #ececec;
   border-radius:14px;
   padding:18px;
@@ -278,8 +263,7 @@ button{
 .status-row{
   display:flex;
   justify-content:space-between;
-  gap:15px;
-  padding:8px 0;
+  padding:9px 0;
   border-bottom:1px solid #f1f1f1;
 }
 
@@ -293,18 +277,18 @@ button{
 }
 
 .deposit-amount{
-  font-size:28px;
+  font-size:29px;
   font-weight:800;
-  margin:5px 0;
 }
 
 .deposit-label{
   color:#777;
   font-size:14px;
+  margin-top:5px;
 }
 
 .appeals-number{
-  font-size:28px;
+  font-size:29px;
   font-weight:800;
 }
 
@@ -312,16 +296,15 @@ button{
   display:inline-block;
   margin-top:12px;
   color:#1683ff;
-  cursor:pointer;
   font-weight:600;
 }
 
-/* statistics */
+/* ================= STATISTICS ================= */
 
 .stats-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:18px;
 }
 
@@ -332,15 +315,10 @@ button{
 
 .small-btn{
   border:1px solid #ddd;
-  background:white;
-  padding:7px 12px;
+  background:#fff;
+  padding:7px 11px;
   border-radius:7px;
-  cursor:pointer;
-}
-
-.small-btn:hover{
-  border-color:#1683ff;
-  color:#1683ff;
+  color:#444;
 }
 
 .stat-main{
@@ -366,7 +344,7 @@ button{
   font-weight:750;
 }
 
-/* financial */
+/* ================= FINANCIAL ================= */
 
 .section-heading{
   font-size:22px;
@@ -414,7 +392,7 @@ button{
   font-size:14px;
 }
 
-.rate-grid span:nth-child(odd){
+.rate-grid span{
   color:#777;
 }
 
@@ -430,7 +408,7 @@ button{
   font-weight:800;
 }
 
-/* recent activity */
+/* ================= ACTIVITY ================= */
 
 .activity-tabs{
   display:flex;
@@ -441,13 +419,12 @@ button{
 .activity-tab{
   flex:1;
   border:1px solid #eee;
-  background:white;
+  background:#fff;
   padding:11px 8px;
   border-radius:8px;
-  cursor:pointer;
 }
 
-.activity-tab.active-tab{
+.active-tab{
   color:#1683ff;
   border-color:#cfe5ff;
   background:#f3f8ff;
@@ -459,7 +436,7 @@ button{
   color:#888;
 }
 
-/* page navigation */
+/* ================= OTHER PAGES ================= */
 
 .back-btn{
   border:0;
@@ -467,7 +444,6 @@ button{
   color:#1683ff;
   padding:9px 13px;
   border-radius:8px;
-  cursor:pointer;
   margin-bottom:15px;
 }
 
@@ -479,13 +455,13 @@ button{
   align-items:center;
   justify-content:center;
   color:#999;
-  margin-bottom:15px;
 }
 
 .status-legend{
   display:flex;
   justify-content:center;
   gap:18px;
+  margin-top:15px;
   font-size:13px;
 }
 
@@ -501,13 +477,12 @@ button{
 .green{background:#27ae60;}
 .blue{background:#1683ff;}
 
-/* floating buttons */
+/* ================= FLOAT BUTTONS ================= */
 
 .floating{
   position:fixed;
   right:18px;
   bottom:18px;
-  z-index:15;
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -516,20 +491,19 @@ button{
 .float-btn{
   width:44px;
   height:44px;
-  border-radius:50%;
   border:0;
-  background:white;
+  border-radius:50%;
+  background:#fff;
   box-shadow:0 3px 15px rgba(0,0,0,.15);
-  cursor:pointer;
   font-size:19px;
 }
 
 .float-chat{
   background:#1683ff;
-  color:white;
+  color:#fff;
 }
 
-/* responsive */
+/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
@@ -545,14 +519,6 @@ button{
     grid-template-columns:1fr 1fr;
   }
 
-  .rate-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .topbar{
-    padding:0 11px;
-  }
-
   .top-logo{
     font-size:19px;
   }
@@ -562,100 +528,166 @@ button{
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- ==================================================
+     LOGIN PAGE
+================================================== -->
 
 <div id="loginPage">
 
   <div class="login-box">
 
     <div class="logo">SENKEN</div>
-    <div class="login-sub">Account Login</div>
 
-    <input id="userId" type="text" placeholder="User ID">
-    <input id="password" type="password" placeholder="Password">
+    <div class="login-sub">
+      Account Login
+    </div>
 
-    <button class="login-btn" onclick="login()">LOGIN</button>
+    <input
+      id="userId"
+      type="text"
+      placeholder="User ID"
+    >
 
-    <div id="loginError" class="login-error"></div>
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button
+      class="login-btn"
+      onclick="login()"
+    >
+      LOGIN
+    </button>
+
+    <div
+      id="loginError"
+      class="login-error"
+    ></div>
 
   </div>
 
 </div>
 
 
-<!-- ================= APP ================= -->
+<!-- ==================================================
+     APPLICATION
+================================================== -->
 
 <div id="app" class="hidden">
+
+  <!-- TOP BAR -->
 
   <header class="topbar">
 
     <div class="top-left">
 
-      <button class="menu-btn" onclick="openMenu()">☰</button>
+      <button
+        class="menu-btn"
+        onclick="openMenu()"
+      >
+        ☰
+      </button>
 
-      <div class="top-logo">SENKEN</div>
+      <div class="top-logo">
+        SENKEN
+      </div>
 
     </div>
 
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
+      Logout
+    </button>
 
   </header>
 
 
+  <!-- SIDEBAR OVERLAY -->
+
+  <div
+    id="overlay"
+    class="overlay"
+    onclick="closeMenu()"
+  ></div>
+
+
   <!-- SIDEBAR -->
 
-  <div id="overlay" class="overlay" onclick="closeMenu()"></div>
-
-  <aside id="sidebar" class="sidebar">
+  <aside
+    id="sidebar"
+    class="sidebar"
+  >
 
     <div class="sidebar-head">
 
-      <div class="lang">💡 &nbsp; EN</div>
+      <div class="lang">
+        💡 &nbsp; EN
+      </div>
 
-      <button class="close-menu" onclick="closeMenu()">×</button>
+      <button
+        class="close-menu"
+        onclick="closeMenu()"
+      >
+        ×
+      </button>
 
     </div>
+
 
     <div class="menu-list">
 
       <button class="menu-item" onclick="showPage('news')">
-        <span class="icon">📰</span> News
+        <span class="icon">📰</span>
+        News
       </button>
 
       <button class="menu-item" onclick="showPage('verification')">
-        <span class="icon">✓</span> Verification
+        <span class="icon">✓</span>
+        Verification
       </button>
 
       <button class="menu-item active" onclick="showPage('dashboard')">
-        <span class="icon">⌂</span> Dashboard
+        <span class="icon">⌂</span>
+        Dashboard
       </button>
 
       <button class="menu-item" onclick="showPage('requisites')">
-        <span class="icon">▣</span> Requisites
+        <span class="icon">▣</span>
+        Requisites
       </button>
 
       <button class="menu-item" onclick="showPage('invoices')">
-        <span class="icon">▤</span> Invoices
+        <span class="icon">▤</span>
+        Invoices
       </button>
 
       <button class="menu-item" onclick="showPage('invoice-history')">
-        <span class="icon">◷</span> Invoices History
+        <span class="icon">◷</span>
+        Invoices History
       </button>
 
       <button class="menu-item" onclick="showPage('appeals')">
-        <span class="icon">⚖</span> Appeals
+        <span class="icon">⚖</span>
+        Appeals
       </button>
 
       <button class="menu-item" onclick="showPage('notifications')">
-        <span class="icon">♧</span> Notifications
+        <span class="icon">♧</span>
+        Notifications
       </button>
 
       <button class="menu-item" onclick="showPage('instructions')">
-        <span class="icon">☰</span> Instructions
+        <span class="icon">☰</span>
+        Instructions
       </button>
 
       <button class="menu-item" onclick="showPage('settings')">
-        <span class="icon">⚙</span> Settings
+        <span class="icon">⚙</span>
+        Settings
       </button>
 
     </div>
@@ -663,30 +695,42 @@ button{
   </aside>
 
 
-  <!-- ================= MAIN CONTENT ================= -->
+  <!-- MAIN CONTENT -->
 
   <main class="content">
 
-    <!-- DASHBOARD -->
+
+    <!-- ==================================================
+         DASHBOARD
+    ================================================== -->
 
     <section id="dashboardPage">
 
-      <h1 class="page-title">Account Dashboard</h1>
+      <h1 class="page-title">
+        Account Dashboard
+      </h1>
+
 
       <!-- ACCOUNT STATUS -->
 
       <div class="card status-card">
 
-        <div class="card-title">Account Status</div>
+        <div class="card-title">
+          Account Status
+        </div>
 
         <div class="status-row">
           <span>Status</span>
-          <span class="active">Active</span>
+          <span class="active">
+            Active
+          </span>
         </div>
 
         <div class="status-row">
           <span>User ID</span>
-          <span id="displayUserId">admin</span>
+          <span id="displayUserId">
+            admin
+          </span>
         </div>
 
       </div>
@@ -696,7 +740,9 @@ button{
 
       <div class="card">
 
-        <div class="card-title">Insurance Deposit</div>
+        <div class="card-title">
+          Insurance Deposit
+        </div>
 
         <div class="deposit-amount">
           <span id="insuranceDeposit">2000</span> USDT
@@ -713,15 +759,25 @@ button{
 
       <div class="card">
 
-        <div class="card-title">Appeals</div>
-
-        <div class="appeals-number" id="appealsCount">0</div>
-
-        <div class="deposit-label">
-          Open appeals requiring attention
+        <div class="card-title">
+          Appeals
         </div>
 
-        <div class="open-link" onclick="showPage('appeals')">
+        <div
+          id="appealsCount"
+          class="appeals-number"
+        >
+          0
+        </div>
+
+        <div class="deposit-label">
+          Open appeals
+        </div>
+
+        <div
+          class="open-link"
+          onclick="showPage('appeals')"
+        >
           Open appeals →
         </div>
 
@@ -734,35 +790,73 @@ button{
 
         <div class="stats-head">
 
-          <div class="card-title" style="margin:0;">
+          <div
+            class="card-title"
+            style="margin:0;"
+          >
             Statistics
           </div>
 
           <div class="stats-buttons">
-            <button class="small-btn">7D</button>
-            <button class="small-btn">Today</button>
+
+            <button class="small-btn">
+              7D
+            </button>
+
+            <button class="small-btn">
+              Today
+            </button>
+
           </div>
 
         </div>
+
 
         <div class="stat-main">
 
-          <div class="stat-box" onclick="showPage('turnover')">
-            <div class="stat-label">Turnover and earnings</div>
-            <div class="stat-value">0.00 INR</div>
+          <div
+            class="stat-box"
+            onclick="showPage('turnover')"
+          >
+
+            <div class="stat-label">
+              Turnover and earnings
+            </div>
+
+            <div class="stat-value">
+              0.00 INR
+            </div>
+
           </div>
 
-          <div class="stat-box" onclick="showPage('transaction-status')">
-            <div class="stat-label">Transactions by status</div>
-            <div class="stat-value">0</div>
+
+          <div
+            class="stat-box"
+            onclick="showPage('transaction-status')"
+          >
+
+            <div class="stat-label">
+              Transactions by status
+            </div>
+
+            <div class="stat-value">
+              0
+            </div>
+
           </div>
 
         </div>
 
+
         <div style="margin-top:14px;">
-          <button class="small-btn" onclick="showPage('statistics')">
+
+          <button
+            class="small-btn"
+            onclick="showPage('statistics')"
+          >
             Detailed statistics →
           </button>
+
         </div>
 
       </div>
@@ -777,7 +871,7 @@ button{
         </div>
 
         <div class="section-description">
-          Rates, commissions and recent balance activity
+          Rates, commissions and financial information
         </div>
 
 
@@ -794,6 +888,7 @@ button{
             </div>
 
           </div>
+
 
           <div class="rate-grid">
 
@@ -825,6 +920,7 @@ button{
 
           </div>
 
+
           <div class="rate-grid">
 
             <span>Rate:</span>
@@ -841,6 +937,8 @@ button{
         </div>
 
 
+        <!-- EXCHANGE RATE -->
+
         <div style="margin-top:20px;">
 
           <div class="card-title">
@@ -848,8 +946,15 @@ button{
           </div>
 
           <div class="exchange-row">
-            <span>INR</span>
-            <span class="exchange-value">106.00</span>
+
+            <span>
+              INR
+            </span>
+
+            <span class="exchange-value">
+              106.00
+            </span>
+
           </div>
 
         </div>
@@ -865,29 +970,40 @@ button{
           Recent activity
         </div>
 
+
         <div class="activity-tabs">
 
           <button
             id="depositTab"
             class="activity-tab active-tab"
-            onclick="showActivity('deposit')">
+            onclick="showActivity('deposit')"
+          >
             Deposit history
           </button>
 
           <button
             id="balanceTab"
             class="activity-tab"
-            onclick="showActivity('balance')">
+            onclick="showActivity('balance')"
+          >
             Balance operations history
           </button>
 
         </div>
 
-        <div id="depositHistory" class="empty">
+
+        <div
+          id="depositHistory"
+          class="empty"
+        >
           No history
         </div>
 
-        <div id="balanceHistory" class="empty hidden">
+
+        <div
+          id="balanceHistory"
+          class="empty hidden"
+        >
           No balance operations yet
         </div>
 
@@ -896,15 +1012,26 @@ button{
     </section>
 
 
-    <!-- ================= OTHER PAGES ================= -->
+    <!-- ==================================================
+         OTHER PAGES
+    ================================================== -->
 
-    <section id="otherPage" class="hidden">
+    <section
+      id="otherPage"
+      class="hidden"
+    >
 
-      <button class="back-btn" onclick="showPage('dashboard')">
+      <button
+        class="back-btn"
+        onclick="showPage('dashboard')"
+      >
         ← Back to Dashboard
       </button>
 
-      <h1 id="otherTitle" class="page-title"></h1>
+      <h1
+        id="otherTitle"
+        class="page-title"
+      ></h1>
 
       <div id="otherContent"></div>
 
@@ -917,12 +1044,17 @@ button{
 
   <div class="floating">
 
-    <button class="float-btn" title="Notifications"
-      onclick="showPage('notifications')">
+    <button
+      class="float-btn"
+      onclick="showPage('notifications')"
+    >
       ♧
     </button>
 
-    <button class="float-btn float-chat" title="Support">
+    <button
+      class="float-btn float-chat"
+      onclick="alert('Support will be added later.')"
+    >
       ◌
     </button>
 
@@ -931,23 +1063,13 @@ button{
 </div>
 
 
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
 <script>
 
-/* =====================================================
-   USER DATA
-   =====================================================
-
-   YAHAN SE HAR USER KI INFORMATION SET KI JA SAKTI HAI.
-
-   Example:
-
-   user001: {
-      password: "123456",
-      insuranceDeposit: 5000,
-      appeals: 0
-   }
-
-*/
+/* USER DATA */
 
 const USERS = {
 
@@ -955,21 +1077,7 @@ const USERS = {
     password: "123456",
     insuranceDeposit: 2000,
     appeals: 0
-  },
-
-  /*
-  user001: {
-    password: "abc123",
-    insuranceDeposit: 5000,
-    appeals: 0
-  },
-
-  user002: {
-    password: "xyz123",
-    insuranceDeposit: 10000,
-    appeals: 0
   }
-  */
 
 };
 
@@ -979,36 +1087,40 @@ const USERS = {
 let currentUser = null;
 
 
-/* =====================================================
-   LOGIN
-   ===================================================== */
+/* LOGIN */
 
 function login(){
 
   const id =
     document.getElementById("userId").value.trim();
 
-  const pass =
+  const password =
     document.getElementById("password").value;
 
   const error =
     document.getElementById("loginError");
 
-  if(USERS[id] && USERS[id].password === pass){
+
+  if(
+    USERS[id] &&
+    USERS[id].password === password
+  ){
 
     currentUser = id;
 
-    document.getElementById("loginPage")
+    document
+      .getElementById("loginPage")
       .classList.add("hidden");
 
-    document.getElementById("app")
+    document
+      .getElementById("app")
       .classList.remove("hidden");
+
+    error.innerText = "";
 
     loadUserData();
 
     showPage("dashboard");
-
-    error.innerText = "";
 
   }else{
 
@@ -1020,55 +1132,58 @@ function login(){
 }
 
 
-/* =====================================================
-   LOAD USER DATA
-   ===================================================== */
+/* LOAD USER DATA */
 
 function loadUserData(){
 
   const user = USERS[currentUser];
 
-  document.getElementById("displayUserId")
+  document
+    .getElementById("displayUserId")
     .innerText = currentUser;
 
-  document.getElementById("insuranceDeposit")
+  document
+    .getElementById("insuranceDeposit")
     .innerText = user.insuranceDeposit;
 
-  document.getElementById("appealsCount")
+  document
+    .getElementById("appealsCount")
     .innerText = user.appeals;
 
 }
 
 
-/* =====================================================
-   SIDEBAR
-   ===================================================== */
+/* OPEN MENU */
 
 function openMenu(){
 
-  document.getElementById("sidebar")
+  document
+    .getElementById("sidebar")
     .classList.add("open");
 
-  document.getElementById("overlay")
+  document
+    .getElementById("overlay")
     .classList.add("show");
 
 }
 
 
+/* CLOSE MENU */
+
 function closeMenu(){
 
-  document.getElementById("sidebar")
+  document
+    .getElementById("sidebar")
     .classList.remove("open");
 
-  document.getElementById("overlay")
+  document
+    .getElementById("overlay")
     .classList.remove("show");
 
 }
 
 
-/* =====================================================
-   PAGE SYSTEM
-   ===================================================== */
+/* PAGE SYSTEM */
 
 function showPage(page){
 
@@ -1079,6 +1194,13 @@ function showPage(page){
 
   const other =
     document.getElementById("otherPage");
+
+  const title =
+    document.getElementById("otherTitle");
+
+  const content =
+    document.getElementById("otherContent");
+
 
   if(page === "dashboard"){
 
@@ -1093,13 +1215,6 @@ function showPage(page){
   other.classList.remove("hidden");
 
 
-  const title =
-    document.getElementById("otherTitle");
-
-  const content =
-    document.getElementById("otherContent");
-
-
   if(page === "turnover"){
 
     title.innerText =
@@ -1112,21 +1227,28 @@ function showPage(page){
         <div class="stat-main">
 
           <div class="stat-box">
+
             <div class="stat-label">
               Turnover
             </div>
+
             <div class="stat-value">
               0.00 INR
             </div>
+
           </div>
 
+
           <div class="stat-box">
+
             <div class="stat-label">
               Total earned
             </div>
+
             <div class="stat-value">
               0.00 INR
             </div>
+
           </div>
 
         </div>
@@ -1165,7 +1287,7 @@ function showPage(page){
 
           <span>
             <i class="dot blue"></i>
-            Total transactions 0
+            Total 0
           </span>
 
         </div>
@@ -1200,3 +1322,267 @@ function showPage(page){
 
           <div class="stat-box">
             <div class="stat-label">Average check</div>
+            <div class="stat-value">0.00 INR</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">Total transactions</div>
+            <div class="stat-value">0</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">Successful</div>
+            <div class="stat-value">0</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">Failed</div>
+            <div class="stat-value">0</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-label">Conversion</div>
+            <div class="stat-value">0.00%</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  else if(page === "appeals"){
+
+    title.innerText =
+      "Appeals";
+
+    content.innerHTML = `
+
+      <div class="card">
+
+        <div class="card-title">
+          Open Appeals
+        </div>
+
+        <div class="appeals-number">
+          ${USERS[currentUser].appeals}
+        </div>
+
+        <div class="deposit-label">
+          Current open appeals
+        </div>
+
+        <button
+          class="login-btn"
+          style="margin-top:18px;"
+          onclick="openAppeal()"
+        >
+          Open an Appeal
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  else if(page === "news"){
+
+    title.innerText = "News";
+
+    content.innerHTML =
+      emptyPage("No news available.");
+
+  }
+
+
+  else if(page === "verification"){
+
+    title.innerText = "Verification";
+
+    content.innerHTML =
+      emptyPage("Verification information will appear here.");
+
+  }
+
+
+  else if(page === "requisites"){
+
+    title.innerText = "Requisites";
+
+    content.innerHTML =
+      emptyPage("No requisites added yet.");
+
+  }
+
+
+  else if(page === "invoices"){
+
+    title.innerText = "Invoices";
+
+    content.innerHTML =
+      emptyPage("No invoices available.");
+
+  }
+
+
+  else if(page === "invoice-history"){
+
+    title.innerText = "Invoices History";
+
+    content.innerHTML =
+      emptyPage("No invoice history.");
+
+  }
+
+
+  else if(page === "notifications"){
+
+    title.innerText = "Notifications";
+
+    content.innerHTML =
+      emptyPage("No notifications.");
+
+  }
+
+
+  else if(page === "instructions"){
+
+    title.innerText = "Instructions";
+
+    content.innerHTML =
+      emptyPage("Instructions will appear here.");
+
+  }
+
+
+  else if(page === "settings"){
+
+    title.innerText = "Settings";
+
+    content.innerHTML = `
+
+      <div class="card">
+
+        <div class="card-title">
+          Account Settings
+        </div>
+
+        <p>
+          User ID:
+          <strong>${currentUser}</strong>
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* EMPTY PAGE */
+
+function emptyPage(message){
+
+  return `
+
+    <div class="card">
+
+      <div class="empty">
+        ${message}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* OPEN APPEAL */
+
+function openAppeal(){
+
+  alert(
+    "Appeal form will be added in the next step."
+  );
+
+}
+
+
+/* RECENT ACTIVITY */
+
+function showActivity(type){
+
+  const deposit =
+    document.getElementById("depositHistory");
+
+  const balance =
+    document.getElementById("balanceHistory");
+
+  const depositTab =
+    document.getElementById("depositTab");
+
+  const balanceTab =
+    document.getElementById("balanceTab");
+
+
+  if(type === "deposit"){
+
+    deposit.classList.remove("hidden");
+    balance.classList.add("hidden");
+
+    depositTab.classList.add("active-tab");
+    balanceTab.classList.remove("active-tab");
+
+  }else{
+
+    deposit.classList.add("hidden");
+    balance.classList.remove("hidden");
+
+    depositTab.classList.remove("active-tab");
+    balanceTab.classList.add("active-tab");
+
+  }
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+  currentUser = null;
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginPage")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("userId")
+    .value = "";
+
+  document
+    .getElementById("password")
+    .value = "";
+
+  document
+    .getElementById("loginError")
+    .innerText = "";
+
+}
+
+</script>
+
+</body>
+</html>
