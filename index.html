@@ -685,7 +685,11 @@ button{
         Instructions
       </button>
 
-      <button class="menu-item" onclick="showPage('user-management')">
+      <button
+  id="userManagementBtn"
+  class="menu-item"
+  onclick="showPage('user-management')"
+>
   <span class="icon">👥</span>
   User Management
 </button>
@@ -1133,6 +1137,8 @@ function login(){
   ){
 
     currentUser = id;
+    document.getElementById("userManagementBtn").style.display =
+  currentUser === "admin" ? "flex" : "none";
 
     document
       .getElementById("loginPage")
