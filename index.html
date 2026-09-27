@@ -1095,8 +1095,7 @@ button{
 
 /* USER DATA */
 
-const USERS = {
-
+const DEFAULT_USERS = {
   admin: {
     password: "123456",
     insuranceDeposit: 2000,
@@ -1107,10 +1106,12 @@ const USERS = {
     password: "123456",
     insuranceDeposit: 2000,
     appeals: 0
-  },
-
+  }
 };
 
+const USERS =
+  JSON.parse(localStorage.getItem("SENKEN_USERS"))
+  || JSON.parse(JSON.stringify(DEFAULT_USERS));
 
 /* CURRENT USER */
 
@@ -1696,6 +1697,10 @@ function addNewUser(){
     appeals: 0
 
   };
+  localStorage.setItem(
+  "SENKEN_USERS",
+  JSON.stringify(USERS)
+);
 
   alert("User created successfully.");
 
