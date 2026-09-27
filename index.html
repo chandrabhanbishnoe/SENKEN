@@ -1525,6 +1525,68 @@ else if(page === "user-management"){
     <div class="card">
 
       <div class="card-title">
+        Add New User
+      </div>
+
+      <div style="margin-top:15px;">
+
+        <input
+          id="newUserId"
+          type="text"
+          placeholder="Enter User ID"
+          style="
+            width:100%;
+            padding:13px;
+            border:1px solid #d9dee7;
+            border-radius:10px;
+            margin-bottom:10px;
+            font-size:15px;
+          "
+        >
+
+        <input
+          id="newUserPassword"
+          type="text"
+          placeholder="Enter Password"
+          style="
+            width:100%;
+            padding:13px;
+            border:1px solid #d9dee7;
+            border-radius:10px;
+            margin-bottom:10px;
+            font-size:15px;
+          "
+        >
+
+        <input
+          id="newUserDeposit"
+          type="number"
+          placeholder="Insurance Deposit (USDT)"
+          style="
+            width:100%;
+            padding:13px;
+            border:1px solid #d9dee7;
+            border-radius:10px;
+            margin-bottom:15px;
+            font-size:15px;
+          "
+        >
+
+        <button
+          class="login-btn"
+          onclick="addNewUser()"
+        >
+          Add User
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="card" style="margin-top:15px;">
+
+      <div class="card-title">
         Users
       </div>
 
@@ -1595,6 +1657,49 @@ else if(page === "user-management"){
     `;
 
   }
+
+}
+
+function addNewUser(){
+
+  const userId =
+    document.getElementById("newUserId").value.trim();
+
+  const password =
+    document.getElementById("newUserPassword").value.trim();
+
+  const deposit =
+    Number(
+      document.getElementById("newUserDeposit").value
+    );
+
+  if(!userId || !password || !deposit){
+
+    alert("Please fill all fields.");
+
+    return;
+  }
+
+  if(USERS[userId]){
+
+    alert("This User ID already exists.");
+
+    return;
+  }
+
+  USERS[userId] = {
+
+    password: password,
+
+    insuranceDeposit: deposit,
+
+    appeals: 0
+
+  };
+
+  alert("User created successfully.");
+
+  showPage("user-management");
 
 }
 
