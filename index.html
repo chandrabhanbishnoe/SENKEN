@@ -685,6 +685,11 @@ button{
         Instructions
       </button>
 
+      <button class="menu-item" onclick="showPage('user-management')">
+  <span class="icon">👥</span>
+  User Management
+</button>
+      
       <button class="menu-item" onclick="showPage('settings')">
         <span class="icon">⚙</span>
         Settings
@@ -1225,7 +1230,8 @@ function showPage(page){
     appeals: 6,
     notifications: 7,
     instructions: 8,
-    settings: 9
+    "user-management": 9,
+    settings: 10
   };
 
   if(menuOrder[page] !== undefined){
@@ -1503,7 +1509,63 @@ function showPage(page){
       emptyPage("Instructions will appear here.");
 
   }
+    
+else if(page === "user-management"){
 
+  title.innerText = "User Management";
+
+  content.innerHTML = `
+
+    <div class="card">
+
+      <div class="card-title">
+        Users
+      </div>
+
+      <div style="margin-top:15px;">
+
+        ${Object.keys(USERS).map(function(user){
+
+          return `
+            <div style="
+              padding:15px;
+              border:1px solid #e5e7eb;
+              border-radius:12px;
+              margin-bottom:10px;
+            ">
+
+              <strong>${user}</strong>
+
+              <div style="
+                margin-top:6px;
+                color:#667085;
+                font-size:14px;
+              ">
+                Insurance Deposit:
+                ${USERS[user].insuranceDeposit} USDT
+              </div>
+
+              <div style="
+                margin-top:4px;
+                color:#667085;
+                font-size:14px;
+              ">
+                Appeals:
+                ${USERS[user].appeals}
+              </div>
+
+            </div>
+          `;
+
+        }).join("")}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
 
   else if(page === "settings"){
 
