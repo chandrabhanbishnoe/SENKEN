@@ -1182,7 +1182,7 @@ async function login(){
 
     const { data: userData, error: userError } =
       await supabaseClient
-        .from("users")
+        .from("USERS")
         .select("*")
         .eq("auth_id", data.user.id)
         .single();
