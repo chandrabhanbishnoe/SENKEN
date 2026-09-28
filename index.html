@@ -1743,7 +1743,8 @@ else if(page === "user-management"){
 
 }
 
-function addNewUser(){
+
+async function addNewUser(){
 
   const userId =
     document.getElementById("newUserId").value.trim();
@@ -1763,33 +1764,109 @@ function addNewUser(){
     return;
   }
 
-  if(USERS[userId]){
+  if(userId.toLowerCase() === "admin"){
 
-    alert("This User ID already exists.");
+    alert("Admin user already exists.");
 
     return;
   }
 
-  USERS[userId] = {
+  if(password.length < 6){
 
-    password: password,
+    alert("Password must be at least 6 characters.");
 
-    insuranceDeposit: deposit,
+    return;
+  }
 
-    appeals: 0
+  try{
 
-  };
-  localStorage.setItem(
-  "SENKEN_USERS",
-  JSON.stringify(USERS)
-);
+    alert("Creating user...");
 
-  alert("User created successfully.");
+    const {
+      data: sessionData,
+      error: sessionError
+    } = await supabaseClient.auth.getSession();
 
-  showPage("user-management");
+    if(sessionError || !sessionData.session){
+
+      alert("Admin session expired. Please login again.");
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/create-user`,
+        {
+          method: "POST",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            userId: userId,
+
+            password: password,
+
+            insuranceDeposit: deposit
+
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "User creation failed:\n" +
+        (result.error || "Unknown error")
+      );
+
+      return;
+    }
+
+    alert(
+      "User created successfully!\n\n" +
+      "User ID: " + userId
+    );
+
+    document
+      .getElementById("newUserId")
+      .value = "";
+
+    document
+      .getElementById("newUserPassword")
+      .value = "";
+
+    document
+      .getElementById("newUserDeposit")
+      .value = "";
+
+    showPage("user-management");
+
+  }catch(error){
+
+    console.error(
+      "CREATE USER ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
 
 }
-
 
 /* EMPTY PAGE */
 
