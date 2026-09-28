@@ -1190,13 +1190,19 @@ async function login(){
 
     if(userError || !userData){
 
-      error.innerText =
-        "User profile not found";
 
-      await supabaseClient.auth.signOut();
+  console.error("PROFILE ERROR:", userError);
+  console.log("AUTH USER:", data.user);
+  console.log("PROFILE DATA:", userData);
 
-      return;
-    }
+  error.innerText =
+    "Profile Error: " +
+    (userError?.message || "No profile found");
+
+  await supabaseClient.auth.signOut();
+
+  return;
+}
 
 
     currentUser = userData.user_id;
