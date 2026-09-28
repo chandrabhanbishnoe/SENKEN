@@ -1605,7 +1605,8 @@ function showPage(page){
 
   }
     
-else if(page === "user-management"){
+
+  else if(page === "user-management"){
 
   title.innerText = "User Management";
 
@@ -1635,7 +1636,7 @@ else if(page === "user-management"){
 
         <input
           id="newUserPassword"
-          type="text"
+          type="password"
           placeholder="Enter Password"
           style="
             width:100%;
@@ -1672,55 +1673,28 @@ else if(page === "user-management"){
 
     </div>
 
-
-    <div class="card" style="margin-top:15px;">
+    <div
+      class="card"
+      style="margin-top:15px;"
+      id="usersListCard"
+    >
 
       <div class="card-title">
         Users
       </div>
 
-      <div style="margin-top:15px;">
-
-        ${Object.keys(USERS).map(function(user){
-
-          return `
-            <div style="
-              padding:15px;
-              border:1px solid #e5e7eb;
-              border-radius:12px;
-              margin-bottom:10px;
-            ">
-
-              <strong>${user}</strong>
-
-              <div style="
-                margin-top:6px;
-                color:#667085;
-                font-size:14px;
-              ">
-                Insurance Deposit:
-                ${USERS[user].insuranceDeposit} USDT
-              </div>
-
-              <div style="
-                margin-top:4px;
-                color:#667085;
-                font-size:14px;
-              ">
-                Appeals:
-                ${USERS[user].appeals}
-              </div>
-
-            </div>
-          `;
-
-        }).join("")}
-
+      <div
+        id="usersList"
+        style="margin-top:15px;"
+      >
+        Loading users...
       </div>
 
     </div>
 
   `;
+
+  loadUsersForAdmin();
 
 }
 
@@ -1750,43 +1724,15 @@ else if(page === "user-management"){
 }
 
 
-async function addNewUser(){
 
-  const userId =
-    document.getElementById("newUserId").value.trim();
+ async function loadUsersForAdmin(){
 
-  const password =
-    document.getElementById("newUserPassword").value.trim();
+  const list =
+    document.getElementById("usersList");
 
-  const deposit =
-    Number(
-      document.getElementById("newUserDeposit").value
-    );
-
-  if(!userId || !password || !deposit){
-
-    alert("Please fill all fields.");
-
-    return;
-  }
-
-  if(userId.toLowerCase() === "admin"){
-
-    alert("Admin user already exists.");
-
-    return;
-  }
-
-  if(password.length < 6){
-
-    alert("Password must be at least 6 characters.");
-
-    return;
-  }
+  if(!list) return;
 
   try{
-
-    alert("Creating user...");
 
     const {
       data: sessionData,
@@ -1795,16 +1741,17 @@ async function addNewUser(){
 
     if(sessionError || !sessionData.session){
 
-      alert("Admin session expired. Please login again.");
+      list.innerHTML =
+        "Admin session expired.";
 
       return;
     }
 
     const response =
       await fetch(
-        `${SUPABASE_URL}/functions/v1/create-user`,
+        `${SUPABASE_URL}/functions/v1/get-users`,
         {
-          method: "POST",
+          method: "GET",
 
           headers: {
             "Authorization":
@@ -1812,17 +1759,7 @@ async function addNewUser(){
 
             "Content-Type":
               "application/json"
-          },
-
-          body: JSON.stringify({
-
-            userId: userId,
-
-            password: password,
-
-            insuranceDeposit: deposit
-
-          })
+          }
         }
       );
 
@@ -1831,49 +1768,87 @@ async function addNewUser(){
 
     if(!response.ok){
 
-      alert(
-        "User creation failed:\n" +
-        (result.error || "Unknown error")
-      );
+      list.innerHTML =
+        "Error: " +
+        (result.error || "Could not load users");
 
       return;
     }
 
-    alert(
-      "User created successfully!\n\n" +
-      "User ID: " + userId
-    );
+    const users =
+      result.users || [];
 
-    document
-      .getElementById("newUserId")
-      .value = "";
+    if(users.length === 0){
 
-    document
-      .getElementById("newUserPassword")
-      .value = "";
+      list.innerHTML =
+        "No users found.";
 
-    document
-      .getElementById("newUserDeposit")
-      .value = "";
+      return;
+    }
 
-    showPage("user-management");
+    list.innerHTML =
+      users.map(function(user){
+
+        return `
+
+          <div style="
+            padding:15px;
+            border:1px solid #e5e7eb;
+            border-radius:12px;
+            margin-bottom:10px;
+          ">
+
+            <strong>
+              ${user.user_id}
+            </strong>
+
+            <div style="
+              margin-top:6px;
+              color:#667085;
+              font-size:14px;
+            ">
+              Insurance Deposit:
+              ${user.insurance_deposit} USDT
+            </div>
+
+            <div style="
+              margin-top:4px;
+              color:#667085;
+              font-size:14px;
+            ">
+              Appeals:
+              ${user.appeals}
+            </div>
+
+            <div style="
+              margin-top:4px;
+              color:#667085;
+              font-size:14px;
+            ">
+              Role:
+              ${user.role}
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
 
   }catch(error){
 
     console.error(
-      "CREATE USER ERROR:",
+      "LOAD USERS ERROR:",
       error
     );
 
-    alert(
-      "Something went wrong:\n" +
-      error.message
-    );
+    list.innerHTML =
+      "Something went wrong: " +
+      error.message;
 
   }
 
 }
-
 /* EMPTY PAGE */
 
 function emptyPage(message){
