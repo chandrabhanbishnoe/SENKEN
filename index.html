@@ -1120,7 +1120,8 @@ let currentUser = null;
 
 /* LOGIN */
 
-function login(){
+
+async function login(){
 
   const id =
     document.getElementById("userId").value.trim();
@@ -1131,34 +1132,113 @@ function login(){
   const error =
     document.getElementById("loginError");
 
+  if(!id || !password){
 
-  if(
-    USERS[id] &&
-    USERS[id].password === password
-  ){
+    error.innerText =
+      "Please enter User ID and Password";
 
-    currentUser = id;
-    document.getElementById("userManagementBtn").style.display =
-  currentUser === "admin" ? "flex" : "none";
+    return;
+  }
+
+  error.innerText = "Logging in...";
+
+
+  try{
+
+    /*
+      User ID ko internal Supabase email
+      me convert kiya ja raha hai.
+      User ko email enter nahi karni padegi.
+    */
+
+    const email =
+      id.toLowerCase() + "@senken.local";
+
+
+    const { data, error: loginError } =
+      await supabaseClient.auth.signInWithPassword({
+
+        email: email,
+
+        password: password
+
+      });
+
+
+    if(loginError){
+
+      error.innerText =
+        "Invalid User ID or Password";
+
+      return;
+    }
+
+
+    /*
+      Supabase Auth user ke UID se
+      public.users table ka profile
+      find karenge.
+    */
+
+    const { data: userData, error: userError } =
+      await supabaseClient
+        .from("users")
+        .select("*")
+        .eq("auth_id", data.user.id)
+        .single();
+
+
+    if(userError || !userData){
+
+      error.innerText =
+        "User profile not found";
+
+      await supabaseClient.auth.signOut();
+
+      return;
+    }
+
+
+    currentUser = userData.user_id;
+
+
+    /*
+      User Management sirf admin ko dikhega
+    */
+
+    document
+      .getElementById("userManagementBtn")
+      .style.display =
+        currentUser === "admin"
+          ? "flex"
+          : "none";
+
 
     document
       .getElementById("loginPage")
       .classList.add("hidden");
 
+
     document
       .getElementById("app")
       .classList.remove("hidden");
 
+
     error.innerText = "";
 
-    loadUserData();
+
+    loadUserData(userData);
+
 
     showPage("dashboard");
 
-  }else{
+
+  }catch(err){
+
+    console.error(err);
 
     error.innerText =
-      "Invalid User ID or Password";
+      "Something went wrong. Please try again.";
 
   }
 
@@ -1167,24 +1247,26 @@ function login(){
 
 /* LOAD USER DATA */
 
-function loadUserData(){
-
-  const user = USERS[currentUser];
+function loadUserData(user){
 
   document
     .getElementById("displayUserId")
-    .innerText = currentUser;
+    .innerText =
+      user.user_id;
+
 
   document
     .getElementById("insuranceDeposit")
-    .innerText = user.insuranceDeposit;
+    .innerText =
+      user.insurance_deposit;
+
 
   document
     .getElementById("appealsCount")
-    .innerText = user.appeals;
+    .innerText =
+      user.appeals;
 
 }
-
 
 /* OPEN MENU */
 
@@ -1806,6 +1888,26 @@ function logout(){
 }
 
 </script>
+  
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+  const SUPABASE_URL = "https://ctrmtyvquifrcsmpyibg.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_VvmDdgojXyBI-KNhXpHpig_zaDrCFkY";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
+</script>
 </body>
 </html>
