@@ -1445,7 +1445,103 @@ async function loadSiteContent(section){
   }
 
 }
+/* PUBLISH NEWS */
 
+async function publishNews(){
+
+  const title =
+    document.getElementById("newsTitle").value.trim();
+
+  const content =
+    document.getElementById("newsContentInput").value.trim();
+
+  if(!title || !content){
+
+    alert("Please enter News Title and News Message.");
+
+    return;
+  }
+
+  try{
+
+    alert("Publishing news...");
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content`,
+        {
+          method: "POST",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            section: "news",
+
+            title: title,
+
+            content: content
+
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "News publish failed:\n" +
+        (result.error || "Unknown error")
+      );
+
+      return;
+    }
+
+    alert("News published successfully!");
+
+    showPage("news");
+
+  }catch(error){
+
+    console.error(
+      "PUBLISH NEWS ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
 
 /* PAGE SYSTEM */
 
