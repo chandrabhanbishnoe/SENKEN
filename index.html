@@ -1326,8 +1326,7 @@ async function loadSiteContent(section){
     return;
   }
 
-  container.innerHTML =
-    "Loading...";
+  container.innerHTML = "Loading...";
 
   try{
 
@@ -1384,7 +1383,7 @@ async function loadSiteContent(section){
 
       container.innerHTML = `
         <div class="card">
-          No news available.
+          No ${section} available.
         </div>
       `;
 
@@ -1395,6 +1394,7 @@ async function loadSiteContent(section){
       posts.map(function(post){
 
         return `
+
           <div
             class="card"
             style="margin-bottom:15px;"
@@ -1426,7 +1426,56 @@ async function loadSiteContent(section){
               ).toLocaleString()}
             </div>
 
+            ${
+              currentUser === "admin"
+              ? `
+
+                <div
+                  style="
+                    margin-top:15px;
+                    display:flex;
+                    gap:10px;
+                    flex-wrap:wrap;
+                  "
+                >
+
+                  <button
+                    onclick="editSiteContent(
+                      ${post.id},
+                      '${section}',
+                      \`${post.title.replace(/`/g, "\\`")}\`,
+                      \`${post.content.replace(/`/g, "\\`")}\`
+                    )"
+                    style="
+                      padding:8px 14px;
+                      border:0;
+                      border-radius:8px;
+                      cursor:pointer;
+                    "
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onclick="deleteSiteContent(${post.id})"
+                    style="
+                      padding:8px 14px;
+                      border:0;
+                      border-radius:8px;
+                      cursor:pointer;
+                    "
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              `
+              : ""
+            }
+
           </div>
+
         `;
 
       }).join("");
@@ -1445,6 +1494,7 @@ async function loadSiteContent(section){
   }
 
 }
+  
 /* PUBLISH NEWS */
 
 async function publishNews(){
