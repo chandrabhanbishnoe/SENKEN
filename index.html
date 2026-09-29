@@ -2216,6 +2216,115 @@ async function deleteUser(authId, userId){
   }
 
 }
+
+  async function editUserDeposit(authId, userId, currentDeposit){
+
+  const newDeposit =
+    prompt(
+      "Enter new insurance deposit for " + userId,
+      currentDeposit
+    );
+
+  if(newDeposit === null){
+    return;
+  }
+
+  const deposit =
+    Number(newDeposit);
+
+  if(!Number.isFinite(deposit) || deposit < 0){
+
+    alert(
+      "Please enter a valid deposit amount."
+    );
+
+    return;
+  }
+
+  try{
+
+    alert("Updating deposit...");
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/update-user-deposit`,
+        {
+          method: "POST",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            authId: authId,
+
+            deposit: deposit
+
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "Deposit update failed:\n" +
+        (result.error || "Unknown error")
+      );
+
+      return;
+    }
+
+    alert(
+      "Deposit updated successfully!\n\n" +
+      userId +
+      ": " +
+      deposit +
+      " USDT"
+    );
+
+    showPage("user-management");
+
+  }catch(error){
+
+    console.error(
+      "UPDATE DEPOSIT ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
   
  async function loadUsersForAdmin(){
 
@@ -2303,6 +2412,22 @@ async function deleteUser(authId, userId){
         gap:8px;
         flex-wrap:wrap;
       ">
+
+<button
+  onclick="editUserDeposit(
+    '${user.auth_id}',
+    '${user.user_id}',
+    ${user.insurance_deposit}
+  )"
+  style="
+    padding:8px 12px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+  "
+>
+  Edit Deposit
+</button>
 
         <button
           onclick="changeUserPassword(
