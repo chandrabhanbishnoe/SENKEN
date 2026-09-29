@@ -1166,16 +1166,16 @@ async function login(){
 
       });
 
+if(loginError){
 
-    if(loginError){
+  console.error("LOGIN ERROR:", loginError);
 
-      console.error("LOGIN ERROR:", loginError);
-      error.innerText =
-        "LOGIN ERROR:" + login error.message
+  error.innerText =
+    "LOGIN ERROR: " +
+    loginError.message;
 
-      return;
-    }
-
+  return;
+}
 
     /*
       Supabase Auth user ke UID se
