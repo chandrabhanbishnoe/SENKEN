@@ -1722,6 +1722,99 @@ async function editSiteContent(
 
 }
 
+  /* DELETE SITE CONTENT */
+
+async function deleteSiteContent(id){
+
+  const confirmDelete =
+    confirm(
+      "Are you sure you want to delete this news?"
+    );
+
+  if(!confirmDelete){
+    return;
+  }
+
+  try{
+
+    alert("Deleting news...");
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content`,
+        {
+          method: "DELETE",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+            id: id
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "News delete failed:\n" +
+        (
+          result.error ||
+          "Unknown error"
+        )
+      );
+
+      return;
+    }
+
+    alert(
+      "News deleted successfully!"
+    );
+
+    showPage("news");
+
+  }catch(error){
+
+    console.error(
+      "DELETE SITE CONTENT ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
+
 /* PAGE SYSTEM */
 
 function showPage(page){
