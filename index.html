@@ -1684,15 +1684,71 @@ else if(page === "news"){
   title.innerText = "News";
 
   content.innerHTML = `
-    <div id="newsContent">
+
+    ${
+      currentUser === "admin"
+      ? `
+        <div class="card">
+
+          <div class="card-title">
+            Add News
+          </div>
+
+          <input
+            id="newsTitle"
+            type="text"
+            placeholder="News Title"
+            style="
+              width:100%;
+              padding:12px;
+              margin-top:15px;
+              border:1px solid #ddd;
+              border-radius:8px;
+              box-sizing:border-box;
+            "
+          >
+
+          <textarea
+            id="newsContentInput"
+            placeholder="Write your news here..."
+            rows="6"
+            style="
+              width:100%;
+              padding:12px;
+              margin-top:12px;
+              border:1px solid #ddd;
+              border-radius:8px;
+              box-sizing:border-box;
+              resize:vertical;
+            "
+          ></textarea>
+
+          <button
+            class="login-btn"
+            onclick="publishNews()"
+            style="margin-top:12px;"
+          >
+            Publish News
+          </button>
+
+        </div>
+      `
+      : ""
+    }
+
+    <div
+      id="newsContent"
+      style="margin-top:15px;"
+    >
       Loading news...
     </div>
+
   `;
 
   loadSiteContent("news");
 
 }
-
+  
   else if(page === "verification"){
 
     title.innerText = "Verification";
