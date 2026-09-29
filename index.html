@@ -1698,31 +1698,88 @@ function showPage(page){
 
 }
 
-  else if(page === "settings"){
+else if(page === "settings"){
 
-    title.innerText = "Settings";
+  title.innerText = "Settings";
 
-    content.innerHTML = `
+  content.innerHTML = `
 
-      <div class="card">
+    <div class="card">
 
-        <div class="card-title">
-          Account Settings
-        </div>
-
-        <p>
-          User ID:
-          <strong>${currentUser}</strong>
-        </p>
-
+      <div class="card-title">
+        Account Settings
       </div>
 
-    `;
+      <p style="margin-top:15px;">
+        User ID:
+        <strong>${currentUser}</strong>
+      </p>
 
-  }
+    </div>
+
+
+    <div class="card" style="margin-top:15px;">
+
+      <div class="card-title">
+        Change Password
+      </div>
+
+      <input
+        id="currentPassword"
+        type="password"
+        placeholder="Current Password"
+        style="
+          width:100%;
+          padding:13px;
+          border:1px solid #d9dee7;
+          border-radius:10px;
+          margin-top:15px;
+          margin-bottom:10px;
+          font-size:15px;
+        "
+      >
+
+      <input
+        id="newPassword"
+        type="password"
+        placeholder="New Password"
+        style="
+          width:100%;
+          padding:13px;
+          border:1px solid #d9dee7;
+          border-radius:10px;
+          margin-bottom:10px;
+          font-size:15px;
+        "
+      >
+
+      <input
+        id="confirmNewPassword"
+        type="password"
+        placeholder="Confirm New Password"
+        style="
+          width:100%;
+          padding:13px;
+          border:1px solid #d9dee7;
+          border-radius:10px;
+          margin-bottom:15px;
+          font-size:15px;
+        "
+      >
+
+      <button
+        class="login-btn"
+        onclick="changeOwnPassword()"
+      >
+        Change Password
+      </button>
+
+    </div>
+
+  `;
 
 }
-
+  
 async function addNewUser(){
 
   const userId =
