@@ -757,10 +757,13 @@ button{
     Insurance Deposit
   </div>
 
-  <div class="deposit-amount">
-    <span id="insuranceDeposit">2000</span> USDT
-  </div>
-
+<div class="deposit-amount">
+  <span id="insuranceDepositCurrent">0</span>
+  /
+  <span id="insuranceDepositRequired">2000</span>
+  USDT
+</div>
+  
   <div class="deposit-label">
     Current insurance deposit
   </div>
@@ -1265,9 +1268,15 @@ function loadUserData(user){
 
 
   document
-    .getElementById("insuranceDeposit")
+    .getElementById("insuranceDepositCurrent")
     .innerText =
       user.insurance_deposit;
+
+
+  document
+    .getElementById("insuranceDepositRequired")
+    .innerText =
+      2000;
 
 
   document
@@ -1276,7 +1285,7 @@ function loadUserData(user){
       user.appeals;
 
 }
-
+  
 /* OPEN MENU */
 
 function openMenu(){
