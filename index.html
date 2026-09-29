@@ -1946,6 +1946,97 @@ async function changeUserPassword(authId, userId){
   }
 
 }
+
+async function deleteUser(authId, userId){
+
+  const confirmed =
+    confirm(
+      "Are you sure you want to delete user " +
+      userId +
+      "?\n\nThis will permanently delete the user account."
+    );
+
+  if(!confirmed){
+    return;
+  }
+
+  try{
+
+    alert("Deleting user...");
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/delete-user`,
+        {
+          method: "POST",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+            authId: authId
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "Delete failed:\n" +
+        (result.error || "Unknown error")
+      );
+
+      return;
+    }
+
+    alert(
+      "User deleted successfully:\n" +
+      userId
+    );
+
+    showPage("user-management");
+
+  }catch(error){
+
+    console.error(
+      "DELETE USER ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
   
  async function loadUsersForAdmin(){
 
@@ -2027,7 +2118,13 @@ async function changeUserPassword(authId, userId){
             ${
   user.role !== "admin"
     ? `
-      <div style="margin-top:10px;">
+      <div style="
+        margin-top:10px;
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+      ">
+
         <button
           onclick="changeUserPassword(
             '${user.auth_id}',
@@ -2042,6 +2139,22 @@ async function changeUserPassword(authId, userId){
         >
           Change Password
         </button>
+
+        <button
+          onclick="deleteUser(
+            '${user.auth_id}',
+            '${user.user_id}'
+          )"
+          style="
+            padding:8px 12px;
+            border:0;
+            border-radius:8px;
+            cursor:pointer;
+          "
+        >
+          Delete User
+        </button>
+
       </div>
     `
     : ""
