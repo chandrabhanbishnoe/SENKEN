@@ -1784,6 +1784,114 @@ else if(page === "settings"){
 }
 
 }
+
+async function changeOwnPassword(){
+
+  const currentPassword =
+    document.getElementById("currentPassword").value;
+
+  const newPassword =
+    document.getElementById("newPassword").value;
+
+  const confirmNewPassword =
+    document.getElementById("confirmNewPassword").value;
+
+  if(!currentPassword || !newPassword || !confirmNewPassword){
+
+    alert("Please fill all password fields.");
+
+    return;
+  }
+
+  if(newPassword.length < 6){
+
+    alert("New password must be at least 6 characters.");
+
+    return;
+  }
+
+  if(newPassword !== confirmNewPassword){
+
+    alert("New password and confirm password do not match.");
+
+    return;
+  }
+
+  try{
+
+    alert("Changing password...");
+
+    const email =
+      currentUser.toLowerCase() + "@senken.local";
+
+    /* Verify current password */
+
+    const {
+      data: loginData,
+      error: loginError
+    } =
+      await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: currentPassword
+      });
+
+    if(loginError){
+
+      alert("Current password is incorrect.");
+
+      return;
+    }
+
+    /* Change password */
+
+    const {
+      error: updateError
+    } =
+      await supabaseClient.auth.updateUser({
+        password: newPassword
+      });
+
+    if(updateError){
+
+      alert(
+        "Password change failed:\n" +
+        updateError.message
+      );
+
+      return;
+    }
+
+    alert(
+      "Password changed successfully!"
+    );
+
+    document
+      .getElementById("currentPassword")
+      .value = "";
+
+    document
+      .getElementById("newPassword")
+      .value = "";
+
+    document
+      .getElementById("confirmNewPassword")
+      .value = "";
+
+  }catch(error){
+
+    console.error(
+      "CHANGE OWN PASSWORD ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
   
 async function addNewUser(){
 
