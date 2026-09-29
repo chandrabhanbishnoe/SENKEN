@@ -1167,8 +1167,9 @@ async function login(){
 
     if(loginError){
 
+      console.error("LOGIN ERROR:", loginError);
       error.innerText =
-        "Invalid User ID or Password";
+        "LOGIN ERROR:" + login error.message
 
       return;
     }
