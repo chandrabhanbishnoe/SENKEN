@@ -1592,6 +1592,135 @@ async function publishNews(){
   }
 
 }
+  
+  /* EDIT SITE CONTENT */
+
+async function editSiteContent(
+  id,
+  section,
+  oldTitle,
+  oldContent
+){
+
+  const newTitle =
+    prompt(
+      "Edit News Title:",
+      oldTitle
+    );
+
+  if(newTitle === null){
+    return;
+  }
+
+  const newContent =
+    prompt(
+      "Edit News Message:",
+      oldContent
+    );
+
+  if(newContent === null){
+    return;
+  }
+
+  if(
+    !newTitle.trim() ||
+    !newContent.trim()
+  ){
+
+    alert(
+      "Title and News Message cannot be empty."
+    );
+
+    return;
+  }
+
+  try{
+
+    alert("Updating news...");
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content`,
+        {
+          method: "PUT",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            id: id,
+
+            section: section,
+
+            title: newTitle.trim(),
+
+            content: newContent.trim()
+
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "News update failed:\n" +
+        (
+          result.error ||
+          "Unknown error"
+        )
+      );
+
+      return;
+    }
+
+    alert(
+      "News updated successfully!"
+    );
+
+    showPage(section);
+
+  }catch(error){
+
+    console.error(
+      "EDIT SITE CONTENT ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
 
 /* PAGE SYSTEM */
 
