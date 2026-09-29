@@ -1847,6 +1847,106 @@ async function addNewUser(){
 
 }
 
+async function changeUserPassword(authId, userId){
+
+  const newPassword =
+    prompt(
+      "Enter new password for " + userId
+    );
+
+  if(newPassword === null){
+    return;
+  }
+
+  if(newPassword.length < 6){
+
+    alert(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+  try{
+
+    alert("Changing password...");
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/change-user-password`,
+        {
+          method: "POST",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            authId: authId,
+
+            newPassword: newPassword
+
+          })
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      alert(
+        "Password change failed:\n" +
+        (result.error || "Unknown error")
+      );
+
+      return;
+    }
+
+    alert(
+      "Password changed successfully for " +
+      userId
+    );
+
+  }catch(error){
+
+    console.error(
+      "CHANGE PASSWORD ERROR:",
+      error
+    );
+
+    alert(
+      "Something went wrong:\n" +
+      error.message
+    );
+
+  }
+
+}
+  
  async function loadUsersForAdmin(){
 
   const list =
@@ -1923,6 +2023,29 @@ async function addNewUser(){
             <strong>
               ${user.user_id}
             </strong>
+
+            ${
+  user.role !== "admin"
+    ? `
+      <div style="margin-top:10px;">
+        <button
+          onclick="changeUserPassword(
+            '${user.auth_id}',
+            '${user.user_id}'
+          )"
+          style="
+            padding:8px 12px;
+            border:0;
+            border-radius:8px;
+            cursor:pointer;
+          "
+        >
+          Change Password
+        </button>
+      </div>
+    `
+    : ""
+}
 
             <div style="
               margin-top:6px;
