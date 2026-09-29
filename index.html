@@ -1314,7 +1314,133 @@ function closeMenu(){
     .classList.remove("show");
 
 }
+  
+async function loadSiteContent(section){
 
+  const container =
+    document.getElementById(section + "Content");
+
+  if(!container){
+    return;
+  }
+
+  container.innerHTML =
+    "Loading...";
+
+  try{
+
+    const {
+      data: sessionData,
+      error: sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+    if(
+      sessionError ||
+      !sessionData.session
+    ){
+
+      container.innerHTML =
+        "Session expired. Please login again.";
+
+      return;
+    }
+
+    const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content?section=${section}`,
+        {
+          method: "GET",
+
+          headers: {
+            "Authorization":
+              `Bearer ${sessionData.session.access_token}`,
+
+            "Content-Type":
+              "application/json"
+          }
+        }
+      );
+
+    const result =
+      await response.json();
+
+    if(!response.ok){
+
+      container.innerHTML =
+        "Error: " +
+        (result.error || "Could not load content.");
+
+      return;
+    }
+
+    const posts =
+      result.content || [];
+
+    if(posts.length === 0){
+
+      container.innerHTML =
+        `
+          <div class="card">
+            No news available.
+          </div>
+        `;
+
+      return;
+    }
+
+    container.innerHTML =
+      posts.map(function(post){
+
+        return `
+          <div
+            class="card"
+            style="margin-bottom:15px;"
+          >
+
+            <div class="card-title">
+              ${post.title}
+            </div>
+
+            <div
+              style="
+                margin-top:12px;
+                line-height:1.6;
+                white-space:pre-wrap;
+              "
+            >
+              ${post.content}
+            </div>
+
+            <div
+              style="
+                margin-top:12px;
+                font-size:12px;
+                color:#777;
+              "
+            >
+              ${new Date(post.created_at).toLocaleString()}
+            </div>
+
+          </div>
+        `;
+
+      }).join("");
+
+  }catch(error){
+
+    console.error(
+      "LOAD SITE CONTENT ERROR:",
+      error
+    );
+
+    container.innerHTML =
+      "Something went wrong: " +
+      error.message;
+
+  }
+
+}
 
 /* PAGE SYSTEM */
 
@@ -1548,15 +1674,19 @@ function showPage(page){
   }
 
 
-  else if(page === "news"){
+else if(page === "news"){
 
-    title.innerText = "News";
+  title.innerText = "News";
 
-    content.innerHTML =
-      emptyPage("No news available.");
+  content.innerHTML = `
+    <div id="newsContent">
+      Loading news...
+    </div>
+  `;
 
-  }
+  loadSiteContent("news");
 
+}
 
   else if(page === "verification"){
 
@@ -1568,7 +1698,7 @@ function showPage(page){
   }
 
 
-  else if(page === "requisites"){
+  (page === "requisites"){
 
     title.innerText = "Requisites";
 
@@ -1578,7 +1708,7 @@ function showPage(page){
   }
 
 
-  else if(page === "invoices"){
+  (page === "invoices"){
 
     title.innerText = "Invoices";
 
@@ -1588,7 +1718,7 @@ function showPage(page){
   }
 
 
-  else if(page === "invoice-history"){
+  (page === "invoice-history"){
 
     title.innerText = "Invoices History";
 
@@ -1598,7 +1728,7 @@ function showPage(page){
   }
 
 
-  else if(page === "notifications"){
+  (page === "notifications"){
 
     title.innerText = "Notifications";
 
@@ -1608,7 +1738,7 @@ function showPage(page){
   }
 
 
-  else if(page === "instructions"){
+  (page === "instructions"){
 
     title.innerText = "Instructions";
 
@@ -1618,7 +1748,7 @@ function showPage(page){
   }
     
 
-  else if(page === "user-management"){
+  (page === "user-management"){
 
   title.innerText = "User Management";
 
@@ -1710,7 +1840,7 @@ function showPage(page){
 
 }
 
-else if(page === "settings"){
+(page === "settings"){
 
   title.innerText = "Settings";
 
